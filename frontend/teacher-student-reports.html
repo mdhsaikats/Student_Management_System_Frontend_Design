@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>Student Reports - Teacher Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">Student Reports</h1>
+                <span class="text-blue-200">|</span>
+                <span class="text-blue-200">Teacher Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="teacher-dashboard.html" class="btn bg-blue-700 hover:bg-blue-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-blue-700 hover:bg-blue-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">Student Reports</h2>
+            <p class="text-gray-600">Generate comprehensive reports on student performance and progress</p>
+        </div>
+
+        <!-- Report Filters -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-4">Report Filters</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-gray-700 font-satoshi font-bold mb-2">Class</label>
+                    <select id="classFilter" class="input">
+                        <option value="all">All Classes</option>
+                        <option value="cs101">Computer Science 101</option>
+                        <option value="ds201">Data Structures</option>
+                        <option value="db301">Database Systems</option>
+                        <option value="web202">Web Development</option>
+                        <option value="se401">Software Engineering</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-satoshi font-bold mb-2">Report Type</label>
+                    <select id="reportType" class="input" onchange="updateReportView()">
+                        <option value="individual">Individual Student</option>
+                        <option value="class">Class Summary</option>
+                        <option value="performance">Performance Analysis</option>
+                        <option value="attendance">Attendance Report</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-satoshi font-bold mb-2">Time Period</label>
+                    <select id="timePeriod" class="input">
+                        <option value="current">Current Semester</option>
+                        <option value="month">Last Month</option>
+                        <option value="quarter">Last Quarter</option>
+                        <option value="year">Full Academic Year</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button onclick="generateReport()" class="btn bg-blue-600 hover:bg-blue-700 w-full">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Generate Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Individual Student Report -->
+        <div id="individual-report" class="space-y-8">
+            <!-- Student Selection -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-4">Select Student</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <select id="studentSelect" class="input col-span-2">
+                        <option value="">Choose a student...</option>
+                        <option value="sarah">Sarah Johnson (ST-001)</option>
+                        <option value="michael">Michael Chen (ST-002)</option>
+                        <option value="emily">Emily Davis (ST-003)</option>
+                        <option value="david">David Wilson (ST-004)</option>
+                        <option value="lisa">Lisa Anderson (ST-005)</option>
+                    </select>
+                    <button onclick="loadStudentReport()" class="btn bg-green-600 hover:bg-green-700">Load Report</button>
+                </div>
+            </div>
+
+            <!-- Student Performance Dashboard -->
+            <div id="student-dashboard" class="hidden">
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                    <div class="flex items-center space-x-6 mb-6">
+                        <img src="https://cdn.pixabay.com/photo/2024/08/30/10/15/woman-9009013_1280.png" alt="Student" class="w-20 h-20 rounded-full">
+                        <div>
+                            <h3 class="text-2xl font-satoshi font-bold">Sarah Johnson</h3>
+                            <p class="text-gray-600">Student ID: ST-001 | Computer Science Major</p>
+                            <p class="text-gray-600">Enrolled: September 2022 | Expected Graduation: May 2026</p>
+                        </div>
+                        <div class="ml-auto flex space-x-4">
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-green-600">3.75</p>
+                                <p class="text-sm text-gray-600">Overall GPA</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-blue-600">95%</p>
+                                <p class="text-sm text-gray-600">Attendance</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Metrics -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-lg">
+                            <div class="text-2xl font-bold">A-</div>
+                            <div class="text-green-100">Current Grade</div>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-lg">
+                            <div class="text-2xl font-bold">8/10</div>
+                            <div class="text-blue-100">Assignments</div>
+                        </div>
+                        <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4 rounded-lg">
+                            <div class="text-2xl font-bold">92%</div>
+                            <div class="text-purple-100">Quiz Average</div>
+                        </div>
+                        <div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-4 rounded-lg">
+                            <div class="text-2xl font-bold">96%</div>
+                            <div class="text-orange-100">Participation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Breakdown -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Assignment Grades -->
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Assignment Performance</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span>Variables & Data Types</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-sm rounded-full">95/100</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span>Control Structures</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-sm rounded-full">88/100</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span>Functions & Methods</span>
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">Pending</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span>Object-Oriented Programming</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-800 text-sm rounded-full">Not Assigned</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Tracking -->
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Attendance Record</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span>Total Classes</span>
+                                <span class="font-bold">20</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>Present</span>
+                                <span class="font-bold text-green-600">19</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>Absent</span>
+                                <span class="font-bold text-red-600">1</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>Late</span>
+                                <span class="font-bold text-yellow-600">0</span>
+                            </div>
+                            <div class="pt-3 border-t">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">95% Attendance Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Chart -->
+                <div class="bg-white rounded-lg shadow-lg p-6 mt-6">
+                    <h4 class="text-lg font-satoshi font-bold mb-4">Grade Progression</h4>
+                    <div class="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
+                        <p class="text-gray-500">Grade progression chart would be displayed here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Class Summary Report -->
+        <div id="class-report" class="hidden space-y-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-6">Class Performance Summary</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600">32</div>
+                        <div class="text-gray-600">Total Students</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600">3.2</div>
+                        <div class="text-gray-600">Class Average GPA</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-600">89%</div>
+                        <div class="text-gray-600">Pass Rate</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-orange-600">94%</div>
+                        <div class="text-gray-600">Avg. Attendance</div>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="text-left py-3">Student Name</th>
+                                <th class="text-left py-3">Student ID</th>
+                                <th class="text-left py-3">Current Grade</th>
+                                <th class="text-left py-3">Attendance</th>
+                                <th class="text-left py-3">Assignments</th>
+                                <th class="text-left py-3">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-3">Sarah Johnson</td>
+                                <td class="py-3">ST-001</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-sm rounded-full">A-</span>
+                                </td>
+                                <td class="py-3">95%</td>
+                                <td class="py-3">8/10</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Excellent</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3">Michael Chen</td>
+                                <td class="py-3">ST-002</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">B+</span>
+                                </td>
+                                <td class="py-3">87%</td>
+                                <td class="py-3">7/10</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Good</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3">Emily Davis</td>
+                                <td class="py-3">ST-003</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-sm rounded-full">A</span>
+                                </td>
+                                <td class="py-3">98%</td>
+                                <td class="py-3">9/10</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Excellent</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3">David Wilson</td>
+                                <td class="py-3">ST-004</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">C+</span>
+                                </td>
+                                <td class="py-3">75%</td>
+                                <td class="py-3">5/10</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Needs Attention</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Options -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mt-8">
+            <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-4">Export Reports</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button class="btn bg-red-600 hover:bg-red-700">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Export as PDF
+                </button>
+                <button class="btn bg-green-600 hover:bg-green-700">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Export as Excel
+                </button>
+                <button class="btn bg-blue-600 hover:bg-blue-700">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    Email Report
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateReportView() {
+            const reportType = document.getElementById('reportType').value;
+            
+            // Hide all report views
+            document.getElementById('individual-report').classList.add('hidden');
+            document.getElementById('class-report').classList.add('hidden');
+            
+            // Show selected report view
+            if (reportType === 'individual') {
+                document.getElementById('individual-report').classList.remove('hidden');
+            } else if (reportType === 'class') {
+                document.getElementById('class-report').classList.remove('hidden');
+            }
+        }
+
+        function loadStudentReport() {
+            const studentSelect = document.getElementById('studentSelect').value;
+            if (studentSelect) {
+                document.getElementById('student-dashboard').classList.remove('hidden');
+            }
+        }
+
+        function generateReport() {
+            const reportType = document.getElementById('reportType').value;
+            const className = document.getElementById('classFilter').value;
+            const timePeriod = document.getElementById('timePeriod').value;
+            
+            alert(`Generating ${reportType} report for ${className} (${timePeriod})`);
+        }
+
+        // Initialize with individual report view
+        updateReportView();
+    </script>
+</body>
+</html>

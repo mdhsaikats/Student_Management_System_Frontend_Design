@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>Digital Library - Student Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-green-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">Digital Library</h1>
+                <span class="text-green-200">|</span>
+                <span class="text-green-200">Student Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="student-dashboard.html" class="btn bg-green-700 hover:bg-green-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-green-700 hover:bg-green-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">Digital Library Portal</h2>
+            <p class="text-gray-600">Access digital resources, e-books, research papers, and more</p>
+        </div>
+
+        <!-- Library Statistics -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Books Borrowed</h3>
+                <p class="text-3xl font-bold text-blue-600">8</p>
+                <p class="text-sm text-gray-500 mt-1">Current Active</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Digital Access</h3>
+                <p class="text-3xl font-bold text-green-600">24/7</p>
+                <p class="text-sm text-gray-500 mt-1">Available Always</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Research Papers</h3>
+                <p class="text-3xl font-bold text-purple-600">156</p>
+                <p class="text-sm text-gray-500 mt-1">Downloads This Year</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Study Hours</h3>
+                <p class="text-3xl font-bold text-orange-600">47</p>
+                <p class="text-sm text-gray-500 mt-1">This Month</p>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h3 class="text-xl font-satoshi font-bold mb-4">Search Library Resources</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <div class="flex-1 min-w-80">
+                    <input type="text" placeholder="Search books, journals, research papers..." class="input w-full text-lg">
+                </div>
+                <select class="input">
+                    <option>All Resources</option>
+                    <option>Books</option>
+                    <option>E-Books</option>
+                    <option>Journals</option>
+                    <option>Research Papers</option>
+                    <option>Multimedia</option>
+                </select>
+                <button class="btn bg-blue-600 hover:bg-blue-700 text-lg px-8">Search</button>
+            </div>
+            <div class="mt-4">
+                <p class="text-sm text-gray-600">Popular searches: 
+                    <span class="text-blue-600 cursor-pointer hover:underline">Calculus</span>, 
+                    <span class="text-blue-600 cursor-pointer hover:underline">Data Structures</span>, 
+                    <span class="text-blue-600 cursor-pointer hover:underline">Organic Chemistry</span>, 
+                    <span class="text-blue-600 cursor-pointer hover:underline">Physics</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Quick Access Categories -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-satoshi font-bold mb-2">E-Books</h3>
+                    <p class="text-gray-600 mb-4">Access thousands of digital books</p>
+                    <p class="text-2xl font-bold text-blue-600">12,450+</p>
+                    <p class="text-sm text-gray-500">Available Titles</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-satoshi font-bold mb-2">Research Papers</h3>
+                    <p class="text-gray-600 mb-4">Academic journals and papers</p>
+                    <p class="text-2xl font-bold text-green-600">8,750+</p>
+                    <p class="text-sm text-gray-500">Research Articles</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-satoshi font-bold mb-2">Multimedia</h3>
+                    <p class="text-gray-600 mb-4">Videos, audio, and presentations</p>
+                    <p class="text-2xl font-bold text-purple-600">3,200+</p>
+                    <p class="text-sm text-gray-500">Media Resources</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Currently Borrowed Books -->
+        <div class="bg-white rounded-lg shadow-lg mb-8">
+            <div class="bg-gray-50 p-4 border-b">
+                <h3 class="text-xl font-satoshi font-bold">Currently Borrowed Books</h3>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-gray-200 p-4 rounded-lg">
+                        <div class="flex space-x-4">
+                            <div class="w-16 h-20 bg-blue-500 rounded flex items-center justify-center">
+                                <span class="text-white font-bold text-xs">BOOK</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-satoshi font-bold">Advanced Calculus</h4>
+                                <p class="text-gray-600 text-sm">by Robert G. Bartle</p>
+                                <p class="text-sm text-orange-600 font-bold">Due: Dec 20, 2024</p>
+                                <div class="flex space-x-2 mt-2">
+                                    <button class="btn bg-green-600 hover:bg-green-700 text-xs">Renew</button>
+                                    <button class="btn bg-blue-600 hover:bg-blue-700 text-xs">Download PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-4 rounded-lg">
+                        <div class="flex space-x-4">
+                            <div class="w-16 h-20 bg-green-500 rounded flex items-center justify-center">
+                                <span class="text-white font-bold text-xs">BOOK</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-satoshi font-bold">Data Structures and Algorithms</h4>
+                                <p class="text-gray-600 text-sm">by Thomas H. Cormen</p>
+                                <p class="text-sm text-orange-600 font-bold">Due: Dec 18, 2024</p>
+                                <div class="flex space-x-2 mt-2">
+                                    <button class="btn bg-green-600 hover:bg-green-700 text-xs">Renew</button>
+                                    <button class="btn bg-blue-600 hover:bg-blue-700 text-xs">Download PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-4 rounded-lg">
+                        <div class="flex space-x-4">
+                            <div class="w-16 h-20 bg-purple-500 rounded flex items-center justify-center">
+                                <span class="text-white font-bold text-xs">BOOK</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-satoshi font-bold">Modern Physics</h4>
+                                <p class="text-gray-600 text-sm">by Randy Harris</p>
+                                <p class="text-sm text-green-600 font-bold">Due: Dec 25, 2024</p>
+                                <div class="flex space-x-2 mt-2">
+                                    <button class="btn bg-green-600 hover:bg-green-700 text-xs">Renew</button>
+                                    <button class="btn bg-blue-600 hover:bg-blue-700 text-xs">Download PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-4 rounded-lg">
+                        <div class="flex space-x-4">
+                            <div class="w-16 h-20 bg-orange-500 rounded flex items-center justify-center">
+                                <span class="text-white font-bold text-xs">BOOK</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-satoshi font-bold">Organic Chemistry</h4>
+                                <p class="text-gray-600 text-sm">by David Klein</p>
+                                <p class="text-sm text-red-600 font-bold">Due: Dec 12, 2024</p>
+                                <div class="flex space-x-2 mt-2">
+                                    <button class="btn bg-red-600 hover:bg-red-700 text-xs">Renew Urgently</button>
+                                    <button class="btn bg-blue-600 hover:bg-blue-700 text-xs">Download PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Downloads -->
+        <div class="bg-white rounded-lg shadow-lg mb-8">
+            <div class="bg-gray-50 p-4 border-b">
+                <h3 class="text-xl font-satoshi font-bold">Recent Downloads</h3>
+            </div>
+            <div class="p-6">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <div>
+                            <h4 class="font-satoshi font-bold">Integration Techniques Reference</h4>
+                            <p class="text-sm text-gray-600">PDF • Mathematics • Downloaded Dec 8, 2024</p>
+                        </div>
+                        <button class="btn bg-blue-600 hover:bg-blue-700 text-sm">Download Again</button>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <div>
+                            <h4 class="font-satoshi font-bold">Binary Trees Implementation Guide</h4>
+                            <p class="text-sm text-gray-600">PDF • Computer Science • Downloaded Dec 7, 2024</p>
+                        </div>
+                        <button class="btn bg-blue-600 hover:bg-blue-700 text-sm">Download Again</button>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <div>
+                            <h4 class="font-satoshi font-bold">Quantum Mechanics Fundamentals</h4>
+                            <p class="text-sm text-gray-600">Video • Physics • Downloaded Dec 6, 2024</p>
+                        </div>
+                        <button class="btn bg-blue-600 hover:bg-blue-700 text-sm">Watch Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course-Related Resources -->
+        <div class="bg-white rounded-lg shadow-lg mb-8">
+            <div class="bg-gray-50 p-4 border-b">
+                <h3 class="text-xl font-satoshi font-bold">Recommended for Your Courses</h3>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- MATH 201 Resources -->
+                    <div class="border border-blue-200 bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-satoshi font-bold text-blue-800 mb-3">MATH 201 - Calculus II</h4>
+                        <div class="space-y-2">
+                            <div class="text-sm">
+                                <span class="font-bold">📚</span> Advanced Engineering Mathematics
+                            </div>
+                            <div class="text-sm">
+                                <span class="font-bold">📄</span> Integration by Parts Tutorial
+                            </div>
+                            <div class="text-sm">
+                                <span class="font-bold">🎥</span> Calculus Video Lectures
+                            </div>
+                        </div>
+                        <button class="btn bg-blue-600 hover:bg-blue-700 text-sm mt-3 w-full">View All</button>
+                    </div>
+
+                    <!-- CS 301 Resources -->
+                    <div class="border border-green-200 bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-satoshi font-bold text-green-800 mb-3">CS 301 - Data Structures</h4>
+                        <div class="space-y-2">
+                            <div class="text-sm">
+                                <span class="font-bold">📚</span> Introduction to Algorithms
+                            </div>
+                            <div class="text-sm">
+                                <span class="font-bold">📄</span> Tree Traversal Examples
+                            </div>
+                            <div class="text-sm">
+                                <span class="font-bold">💻</span> Algorithm Visualization Tools
+                            </div>
+                        </div>
+                        <button class="btn bg-green-600 hover:bg-green-700 text-sm mt-3 w-full">View All</button>
+                    </div>
+
+                    <!-- PHYS 205 Resources -->
+                    <div class="border border-purple-200 bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-satoshi font-bold text-purple-800 mb-3">PHYS 205 - Modern Physics</h4>
+                        <div class="space-y-2">
+                            <div class="text-sm">
+                                <span class="font-bold">📚</span> Concepts of Modern Physics
+                            </div>
+                            <div class="text-sm">
+                                <span class="font-bold">📄</span> Quantum Mechanics Papers
+                            </div>
+                            <div class="text-sm">
+                                <span class="font-bold">🧪</span> Physics Simulation Tools
+                            </div>
+                        </div>
+                        <button class="btn bg-purple-600 hover:bg-purple-700 text-sm mt-3 w-full">View All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Library Services -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-satoshi font-bold mb-4">Library Services</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <button class="btn bg-green-600 hover:bg-green-700">Reserve Study Room</button>
+                <button class="btn bg-blue-600 hover:bg-blue-700">Request New Book</button>
+                <button class="btn bg-purple-600 hover:bg-purple-700">Citation Generator</button>
+                <button class="btn bg-orange-600 hover:bg-orange-700">Research Assistance</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

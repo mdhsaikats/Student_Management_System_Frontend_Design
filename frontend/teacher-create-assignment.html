@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>Create Assignment - Teacher Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">Create Assignment</h1>
+                <span class="text-blue-200">|</span>
+                <span class="text-blue-200">Teacher Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="teacher-dashboard.html" class="btn bg-blue-700 hover:bg-blue-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-blue-700 hover:bg-blue-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">Create New Assignment</h2>
+            <p class="text-gray-600">Design and distribute assignments to your students</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Assignment Form -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-6">Assignment Details</h3>
+                    
+                    <form id="assignmentForm" class="space-y-6">
+                        <!-- Basic Information -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Assignment Title</label>
+                                <input type="text" id="assignmentTitle" class="input" placeholder="Enter assignment title" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Class</label>
+                                <select id="assignmentClass" class="input" required>
+                                    <option value="">Select a class</option>
+                                    <option value="cs101">Computer Science 101</option>
+                                    <option value="ds201">Data Structures</option>
+                                    <option value="db301">Database Systems</option>
+                                    <option value="web202">Web Development</option>
+                                    <option value="se401">Software Engineering</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Assignment Type</label>
+                                <select id="assignmentType" class="input" required>
+                                    <option value="">Select type</option>
+                                    <option value="homework">Homework</option>
+                                    <option value="project">Project</option>
+                                    <option value="quiz">Quiz</option>
+                                    <option value="exam">Exam</option>
+                                    <option value="lab">Lab Exercise</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Total Points</label>
+                                <input type="number" id="totalPoints" class="input" placeholder="100" min="1" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Difficulty Level</label>
+                                <select id="difficulty" class="input">
+                                    <option value="easy">Easy</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="hard">Hard</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Dates and Timing -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Due Date</label>
+                                <input type="datetime-local" id="dueDate" class="input" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Available From</label>
+                                <input type="datetime-local" id="availableFrom" class="input" required>
+                            </div>
+                        </div>
+
+                        <!-- Assignment Description -->
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Assignment Description</label>
+                            <textarea id="assignmentDescription" class="input" rows="6" placeholder="Provide detailed instructions for the assignment..." required></textarea>
+                        </div>
+
+                        <!-- Instructions -->
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Submission Instructions</label>
+                            <textarea id="submissionInstructions" class="input" rows="4" placeholder="How should students submit their work?"></textarea>
+                        </div>
+
+                        <!-- Grading Criteria -->
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Grading Criteria</label>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 border rounded-lg">
+                                    <span>Code Quality/Logic</span>
+                                    <input type="number" class="w-20 px-2 py-1 border rounded" placeholder="40" min="0" max="100">
+                                    <span>%</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 border rounded-lg">
+                                    <span>Documentation/Comments</span>
+                                    <input type="number" class="w-20 px-2 py-1 border rounded" placeholder="20" min="0" max="100">
+                                    <span>%</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 border rounded-lg">
+                                    <span>Functionality/Output</span>
+                                    <input type="number" class="w-20 px-2 py-1 border rounded" placeholder="30" min="0" max="100">
+                                    <span>%</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 border rounded-lg">
+                                    <span>Style/Presentation</span>
+                                    <input type="number" class="w-20 px-2 py-1 border rounded" placeholder="10" min="0" max="100">
+                                    <span>%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- File Attachments -->
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Attach Files</label>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                <svg class="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                </svg>
+                                <p class="text-gray-600 mb-2">Drop files here or click to browse</p>
+                                <input type="file" class="hidden" id="fileInput" multiple accept=".pdf,.doc,.docx,.txt,.zip">
+                                <button type="button" onclick="document.getElementById('fileInput').click()" class="btn bg-blue-600 hover:bg-blue-700">
+                                    Choose Files
+                                </button>
+                            </div>
+                            <div id="fileList" class="mt-4 space-y-2"></div>
+                        </div>
+
+                        <!-- Settings -->
+                        <div class="border-t pt-6">
+                            <h4 class="text-lg font-satoshi font-bold mb-4">Assignment Settings</h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3" checked>
+                                    <span>Allow late submissions</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3">
+                                    <span>Require plagiarism check</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3">
+                                    <span>Allow group submissions</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3" checked>
+                                    <span>Send email notifications to students</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex space-x-4 pt-6">
+                            <button type="submit" class="btn bg-green-600 hover:bg-green-700">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"></path>
+                                </svg>
+                                Publish Assignment
+                            </button>
+                            <button type="button" onclick="saveDraft()" class="btn bg-gray-600 hover:bg-gray-700">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"></path>
+                                </svg>
+                                Save as Draft
+                            </button>
+                            <button type="button" onclick="previewAssignment()" class="btn bg-blue-600 hover:bg-blue-700">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Assignment Templates -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-satoshi font-bold text-gray-800 mb-4">Assignment Templates</h3>
+                    <div class="space-y-3">
+                        <button onclick="loadTemplate('programming')" class="w-full text-left p-3 border rounded-lg hover:bg-gray-50">
+                            <div class="font-bold text-blue-600">Programming Assignment</div>
+                            <div class="text-sm text-gray-600">Code-based tasks with compilation</div>
+                        </button>
+                        <button onclick="loadTemplate('essay')" class="w-full text-left p-3 border rounded-lg hover:bg-gray-50">
+                            <div class="font-bold text-green-600">Essay/Report</div>
+                            <div class="text-sm text-gray-600">Written assignments with rubrics</div>
+                        </button>
+                        <button onclick="loadTemplate('quiz')" class="w-full text-left p-3 border rounded-lg hover:bg-gray-50">
+                            <div class="font-bold text-purple-600">Quiz/Test</div>
+                            <div class="text-sm text-gray-600">Multiple choice and short answers</div>
+                        </button>
+                        <button onclick="loadTemplate('project')" class="w-full text-left p-3 border rounded-lg hover:bg-gray-50">
+                            <div class="font-bold text-orange-600">Group Project</div>
+                            <div class="text-sm text-gray-600">Collaborative assignments</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Assignments -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-satoshi font-bold text-gray-800 mb-4">Recent Assignments</h3>
+                    <div class="space-y-3">
+                        <div class="p-3 border rounded-lg">
+                            <div class="font-bold text-sm">Variables and Data Types</div>
+                            <div class="text-xs text-gray-600">CS 101 • Aug 15, 2025</div>
+                            <button class="text-blue-600 hover:text-blue-800 text-xs mt-1">Duplicate</button>
+                        </div>
+                        <div class="p-3 border rounded-lg">
+                            <div class="font-bold text-sm">Database Design Lab</div>
+                            <div class="text-xs text-gray-600">DB 301 • Aug 12, 2025</div>
+                            <button class="text-blue-600 hover:text-blue-800 text-xs mt-1">Duplicate</button>
+                        </div>
+                        <div class="p-3 border rounded-lg">
+                            <div class="font-bold text-sm">Web Portfolio Project</div>
+                            <div class="text-xs text-gray-600">Web 202 • Aug 10, 2025</div>
+                            <button class="text-blue-600 hover:text-blue-800 text-xs mt-1">Duplicate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assignment Statistics -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-satoshi font-bold text-gray-800 mb-4">This Week</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Assignments Created</span>
+                            <span class="font-bold">3</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Pending Reviews</span>
+                            <span class="font-bold text-orange-600">8</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Avg. Completion Rate</span>
+                            <span class="font-bold text-green-600">94%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set default dates
+        const now = new Date();
+        const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+        
+        document.getElementById('availableFrom').value = now.toISOString().slice(0, 16);
+        document.getElementById('dueDate').value = nextWeek.toISOString().slice(0, 16);
+
+        // Handle file upload
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            
+            Array.from(e.target.files).forEach(file => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'flex items-center justify-between p-2 bg-gray-50 rounded-lg';
+                fileItem.innerHTML = `
+                    <span class="text-sm">${file.name}</span>
+                    <button onclick="this.parentElement.remove()" class="text-red-600 hover:text-red-800">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                `;
+                fileList.appendChild(fileItem);
+            });
+        });
+
+        function loadTemplate(type) {
+            const templates = {
+                programming: {
+                    title: 'Programming Assignment: [Topic]',
+                    description: 'Write a program that demonstrates understanding of [specific concepts]. Your solution should include proper error handling, clear variable names, and comprehensive comments explaining your logic.',
+                    instructions: 'Submit your source code files (.py, .java, .cpp, etc.) along with a brief report explaining your approach and any challenges faced.',
+                    points: 100
+                },
+                essay: {
+                    title: 'Research Essay: [Topic]',
+                    description: 'Write a comprehensive essay analyzing [specific topic]. Your essay should be well-structured with clear arguments supported by credible sources.',
+                    instructions: 'Submit as a PDF document, 1500-2000 words, APA format with at least 5 scholarly references.',
+                    points: 150
+                },
+                quiz: {
+                    title: 'Chapter [X] Quiz',
+                    description: 'This quiz covers the key concepts from Chapter [X]. Review your notes and assigned readings before attempting.',
+                    instructions: 'Complete all questions within the time limit. You have one attempt.',
+                    points: 50
+                },
+                project: {
+                    title: 'Group Project: [Project Name]',
+                    description: 'Work in teams of 3-4 to develop a solution for [project description]. Each team member should contribute equally to the project.',
+                    instructions: 'Submit project files, documentation, and individual reflection essays by the due date.',
+                    points: 200
+                }
+            };
+
+            const template = templates[type];
+            if (template) {
+                document.getElementById('assignmentTitle').value = template.title;
+                document.getElementById('assignmentDescription').value = template.description;
+                document.getElementById('submissionInstructions').value = template.instructions;
+                document.getElementById('totalPoints').value = template.points;
+            }
+        }
+
+        function saveDraft() {
+            alert('Assignment saved as draft!');
+        }
+
+        function previewAssignment() {
+            alert('Assignment preview will open in a new window');
+        }
+
+        document.getElementById('assignmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('assignmentTitle').value;
+            const className = document.getElementById('assignmentClass').value;
+            
+            if (title && className) {
+                alert(`Assignment "${title}" has been published successfully!`);
+                // Reset form or redirect
+            }
+        });
+    </script>
+</body>
+</html>

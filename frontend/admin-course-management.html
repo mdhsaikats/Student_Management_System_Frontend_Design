@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>Course Management - Admin Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-purple-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">Course Management</h1>
+                <span class="text-purple-200">|</span>
+                <span class="text-purple-200">Admin Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="admin-dashboard.html" class="btn bg-purple-700 hover:bg-purple-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-purple-700 hover:bg-purple-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">Course Management</h2>
+            <p class="text-gray-600">Create, manage, and organize academic courses and programs</p>
+        </div>
+
+        <!-- Course Statistics -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-3xl font-bold text-blue-600 mb-2">156</div>
+                <div class="text-gray-600">Active Courses</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-3xl font-bold text-green-600 mb-2">12</div>
+                <div class="text-gray-600">Departments</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-3xl font-bold text-purple-600 mb-2">45</div>
+                <div class="text-gray-600">Programs</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-3xl font-bold text-orange-600 mb-2">1,247</div>
+                <div class="text-gray-600">Enrollments</div>
+            </div>
+        </div>
+
+        <!-- Course Management Tabs -->
+        <div class="bg-white rounded-lg shadow-lg">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8 px-6" aria-label="Tabs">
+                    <button onclick="showTab('courses')" id="courses-tab" class="py-4 px-1 border-b-2 border-purple-500 font-medium text-sm text-purple-600">
+                        All Courses
+                    </button>
+                    <button onclick="showTab('departments')" id="departments-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Departments
+                    </button>
+                    <button onclick="showTab('programs')" id="programs-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Programs
+                    </button>
+                    <button onclick="showTab('schedules')" id="schedules-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Schedules
+                    </button>
+                </nav>
+            </div>
+
+            <!-- All Courses Tab -->
+            <div id="courses-content" class="p-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-4 md:mb-0">Course Catalog</h3>
+                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                        <button onclick="openAddCourseModal()" class="btn bg-green-600 hover:bg-green-700">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            Add Course
+                        </button>
+                        <button class="btn bg-blue-600 hover:bg-blue-700">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Import Courses
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Filters -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div>
+                        <label class="block text-gray-700 font-satoshi font-bold mb-2">Search Courses</label>
+                        <input type="text" class="input" placeholder="Search by course name or code">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-satoshi font-bold mb-2">Department</label>
+                        <select class="input">
+                            <option value="">All Departments</option>
+                            <option value="cs">Computer Science</option>
+                            <option value="math">Mathematics</option>
+                            <option value="physics">Physics</option>
+                            <option value="chemistry">Chemistry</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-satoshi font-bold mb-2">Level</label>
+                        <select class="input">
+                            <option value="">All Levels</option>
+                            <option value="100">100 Level</option>
+                            <option value="200">200 Level</option>
+                            <option value="300">300 Level</option>
+                            <option value="400">400 Level</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-satoshi font-bold mb-2">Status</label>
+                        <select class="input">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="archived">Archived</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Courses Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Course Card 1 -->
+                    <div class="border rounded-lg p-6 hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-satoshi font-bold text-gray-800">CS 101</h4>
+                                <p class="text-gray-600">Introduction to Programming</p>
+                                <p class="text-sm text-gray-500">Computer Science Department</p>
+                            </div>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-sm text-gray-600">Credits</p>
+                                <p class="font-bold">3</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Enrolled</p>
+                                <p class="font-bold">32</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Capacity</p>
+                                <p class="font-bold">35</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Instructor</p>
+                                <p class="font-bold text-sm">Dr. Smith</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button onclick="editCourse('cs101')" class="btn bg-blue-600 hover:bg-blue-700 text-sm">Edit</button>
+                            <button onclick="viewCourse('cs101')" class="btn bg-green-600 hover:bg-green-700 text-sm">View</button>
+                            <button onclick="manageSections('cs101')" class="btn bg-purple-600 hover:bg-purple-700 text-sm">Sections</button>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 2 -->
+                    <div class="border rounded-lg p-6 hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-satoshi font-bold text-gray-800">MATH 201</h4>
+                                <p class="text-gray-600">Calculus II</p>
+                                <p class="text-sm text-gray-500">Mathematics Department</p>
+                            </div>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-sm text-gray-600">Credits</p>
+                                <p class="font-bold">4</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Enrolled</p>
+                                <p class="font-bold">28</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Capacity</p>
+                                <p class="font-bold">30</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Instructor</p>
+                                <p class="font-bold text-sm">Dr. Johnson</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button onclick="editCourse('math201')" class="btn bg-blue-600 hover:bg-blue-700 text-sm">Edit</button>
+                            <button onclick="viewCourse('math201')" class="btn bg-green-600 hover:bg-green-700 text-sm">View</button>
+                            <button onclick="manageSections('math201')" class="btn bg-purple-600 hover:bg-purple-700 text-sm">Sections</button>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 3 -->
+                    <div class="border rounded-lg p-6 hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-satoshi font-bold text-gray-800">PHYS 301</h4>
+                                <p class="text-gray-600">Quantum Physics</p>
+                                <p class="text-sm text-gray-500">Physics Department</p>
+                            </div>
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Pending</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-sm text-gray-600">Credits</p>
+                                <p class="font-bold">3</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Enrolled</p>
+                                <p class="font-bold">0</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Capacity</p>
+                                <p class="font-bold">25</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Instructor</p>
+                                <p class="font-bold text-sm">TBA</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button onclick="editCourse('phys301')" class="btn bg-blue-600 hover:bg-blue-700 text-sm">Edit</button>
+                            <button onclick="viewCourse('phys301')" class="btn bg-green-600 hover:bg-green-700 text-sm">View</button>
+                            <button onclick="manageSections('phys301')" class="btn bg-purple-600 hover:bg-purple-700 text-sm">Sections</button>
+                        </div>
+                    </div>
+
+                    <!-- Add Course Card -->
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center min-h-[280px] hover:border-purple-400 transition-colors">
+                        <svg class="w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        <h4 class="text-lg font-satoshi font-bold text-gray-600 mb-2">Add New Course</h4>
+                        <p class="text-gray-500 text-center mb-4">Create a new course in the catalog</p>
+                        <button onclick="openAddCourseModal()" class="btn bg-purple-600 hover:bg-purple-700">Add Course</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Departments Tab -->
+            <div id="departments-content" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold text-gray-800">Academic Departments</h3>
+                    <button onclick="openAddDepartmentModal()" class="btn bg-green-600 hover:bg-green-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Add Department
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Department Cards -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <h4 class="text-lg font-satoshi font-bold text-blue-800 mb-2">Computer Science</h4>
+                        <p class="text-blue-600 mb-4">Technology and Programming</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-blue-700">Courses:</span>
+                                <span class="font-bold">24</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-blue-700">Faculty:</span>
+                                <span class="font-bold">12</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-blue-700">Students:</span>
+                                <span class="font-bold">450</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <button class="btn bg-blue-600 hover:bg-blue-700 text-sm">Manage</button>
+                            <button class="btn bg-blue-500 hover:bg-blue-600 text-sm">View Courses</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                        <h4 class="text-lg font-satoshi font-bold text-green-800 mb-2">Mathematics</h4>
+                        <p class="text-green-600 mb-4">Pure and Applied Mathematics</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-green-700">Courses:</span>
+                                <span class="font-bold">18</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-green-700">Faculty:</span>
+                                <span class="font-bold">8</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-green-700">Students:</span>
+                                <span class="font-bold">320</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <button class="btn bg-green-600 hover:bg-green-700 text-sm">Manage</button>
+                            <button class="btn bg-green-500 hover:bg-green-600 text-sm">View Courses</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+                        <h4 class="text-lg font-satoshi font-bold text-purple-800 mb-2">Physics</h4>
+                        <p class="text-purple-600 mb-4">Theoretical and Experimental Physics</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-purple-700">Courses:</span>
+                                <span class="font-bold">16</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-purple-700">Faculty:</span>
+                                <span class="font-bold">6</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-purple-700">Students:</span>
+                                <span class="font-bold">180</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <button class="btn bg-purple-600 hover:bg-purple-700 text-sm">Manage</button>
+                            <button class="btn bg-purple-500 hover:bg-purple-600 text-sm">View Courses</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Programs Tab -->
+            <div id="programs-content" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold text-gray-800">Academic Programs</h3>
+                    <button onclick="openAddProgramModal()" class="btn bg-green-600 hover:bg-green-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Add Program
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="text-left py-3">Program Name</th>
+                                <th class="text-left py-3">Degree Type</th>
+                                <th class="text-left py-3">Department</th>
+                                <th class="text-left py-3">Credits Required</th>
+                                <th class="text-left py-3">Enrolled Students</th>
+                                <th class="text-left py-3">Status</th>
+                                <th class="text-left py-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-3">Computer Science</td>
+                                <td class="py-3">Bachelor of Science</td>
+                                <td class="py-3">Computer Science</td>
+                                <td class="py-3">120</td>
+                                <td class="py-3">450</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                                </td>
+                                <td class="py-3">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                        <button class="text-green-600 hover:text-green-800">View</button>
+                                        <button class="text-purple-600 hover:text-purple-800">Curriculum</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3">Mathematics</td>
+                                <td class="py-3">Bachelor of Science</td>
+                                <td class="py-3">Mathematics</td>
+                                <td class="py-3">120</td>
+                                <td class="py-3">320</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                                </td>
+                                <td class="py-3">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                        <button class="text-green-600 hover:text-green-800">View</button>
+                                        <button class="text-purple-600 hover:text-purple-800">Curriculum</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3">Physics</td>
+                                <td class="py-3">Bachelor of Science</td>
+                                <td class="py-3">Physics</td>
+                                <td class="py-3">120</td>
+                                <td class="py-3">180</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                                </td>
+                                <td class="py-3">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                        <button class="text-green-600 hover:text-green-800">View</button>
+                                        <button class="text-purple-600 hover:text-purple-800">Curriculum</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Schedules Tab -->
+            <div id="schedules-content" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold text-gray-800">Course Schedules</h3>
+                    <button onclick="openScheduleBuilder()" class="btn bg-green-600 hover:bg-green-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h8a2 2 0 012 2v4m-4 4V7a2 2 0 00-2-2H8a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2v-4"></path>
+                        </svg>
+                        Schedule Builder
+                    </button>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="text-center text-gray-600">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h8a2 2 0 012 2v4m-4 4V7a2 2 0 00-2-2H8a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2v-4"></path>
+                        </svg>
+                        <h4 class="text-lg font-satoshi font-bold mb-2">Schedule Management Coming Soon</h4>
+                        <p>Advanced scheduling tools and calendar integration will be available here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Course Modal (Hidden by default) -->
+    <div id="addCourseModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center h-full p-4">
+            <div class="bg-white rounded-lg p-6 w-full max-w-2xl max-h-screen overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold">Add New Course</h3>
+                    <button onclick="closeAddCourseModal()" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Course Code</label>
+                            <input type="text" class="input" placeholder="e.g., CS 101" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Course Name</label>
+                            <input type="text" class="input" placeholder="e.g., Introduction to Programming" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-satoshi font-bold mb-2">Course Description</label>
+                        <textarea class="input" rows="3" placeholder="Enter course description"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Department</label>
+                            <select class="input" required>
+                                <option value="">Select Department</option>
+                                <option value="cs">Computer Science</option>
+                                <option value="math">Mathematics</option>
+                                <option value="physics">Physics</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Credits</label>
+                            <input type="number" class="input" min="1" max="6" placeholder="3" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Level</label>
+                            <select class="input" required>
+                                <option value="">Select Level</option>
+                                <option value="100">100 Level</option>
+                                <option value="200">200 Level</option>
+                                <option value="300">300 Level</option>
+                                <option value="400">400 Level</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Capacity</label>
+                            <input type="number" class="input" min="1" placeholder="30" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Prerequisites</label>
+                            <input type="text" class="input" placeholder="e.g., MATH 101">
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4 pt-4">
+                        <button type="submit" class="btn bg-green-600 hover:bg-green-700">Create Course</button>
+                        <button type="button" onclick="closeAddCourseModal()" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all content
+            document.getElementById('courses-content').classList.add('hidden');
+            document.getElementById('departments-content').classList.add('hidden');
+            document.getElementById('programs-content').classList.add('hidden');
+            document.getElementById('schedules-content').classList.add('hidden');
+            
+            // Remove active styles from all tabs
+            const tabs = ['courses-tab', 'departments-tab', 'programs-tab', 'schedules-tab'];
+            tabs.forEach(tab => {
+                const tabElement = document.getElementById(tab);
+                tabElement.classList.remove('border-purple-500', 'text-purple-600');
+                tabElement.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            // Show selected content and activate tab
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            const activeTab = document.getElementById(tabName + '-tab');
+            activeTab.classList.remove('border-transparent', 'text-gray-500');
+            activeTab.classList.add('border-purple-500', 'text-purple-600');
+        }
+
+        function openAddCourseModal() {
+            document.getElementById('addCourseModal').classList.remove('hidden');
+        }
+
+        function closeAddCourseModal() {
+            document.getElementById('addCourseModal').classList.add('hidden');
+        }
+
+        function editCourse(courseId) {
+            alert(`Edit course ${courseId}`);
+        }
+
+        function viewCourse(courseId) {
+            alert(`View course ${courseId}`);
+        }
+
+        function manageSections(courseId) {
+            alert(`Manage sections for ${courseId}`);
+        }
+
+        function openAddDepartmentModal() {
+            alert('Add Department modal would open');
+        }
+
+        function openAddProgramModal() {
+            alert('Add Program modal would open');
+        }
+
+        function openScheduleBuilder() {
+            alert('Schedule Builder would open');
+        }
+    </script>
+</body>
+</html>

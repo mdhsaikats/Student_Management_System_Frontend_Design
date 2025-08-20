@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>Grade Students - Teacher Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">Grade Students</h1>
+                <span class="text-blue-200">|</span>
+                <span class="text-blue-200">Teacher Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="teacher-dashboard.html" class="btn bg-blue-700 hover:bg-blue-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-blue-700 hover:bg-blue-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">Grade Students</h2>
+            <p class="text-gray-600">Review and grade student assignments and exams</p>
+        </div>
+
+        <!-- Class Selection -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-4">Select Class</h3>
+            <div class="flex flex-wrap gap-3">
+                <button onclick="selectClass('cs101')" id="cs101-btn" class="btn bg-blue-600 hover:bg-blue-700 active-class">Computer Science 101</button>
+                <button onclick="selectClass('ds201')" id="ds201-btn" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Data Structures</button>
+                <button onclick="selectClass('db301')" id="db301-btn" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Database Systems</button>
+                <button onclick="selectClass('web202')" id="web202-btn" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Web Development</button>
+                <button onclick="selectClass('se401')" id="se401-btn" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Software Engineering</button>
+            </div>
+        </div>
+
+        <!-- Grading Overview -->
+        <div id="grading-content">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">32</div>
+                    <div class="text-gray-600">Total Students</div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-3xl font-bold text-orange-600 mb-2">8</div>
+                    <div class="text-gray-600">Pending Grades</div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">24</div>
+                    <div class="text-gray-600">Graded</div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">3.2</div>
+                    <div class="text-gray-600">Class Average</div>
+                </div>
+            </div>
+
+            <!-- Assignment Tabs -->
+            <div class="bg-white rounded-lg shadow-lg mb-8">
+                <div class="border-b border-gray-200">
+                    <nav class="-mb-px flex space-x-8 px-6" aria-label="Tabs">
+                        <button onclick="showAssignmentTab('assignments')" id="assignments-tab" class="py-4 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600">
+                            Assignments (3)
+                        </button>
+                        <button onclick="showAssignmentTab('exams')" id="exams-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            Exams (2)
+                        </button>
+                        <button onclick="showAssignmentTab('projects')" id="projects-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            Projects (1)
+                        </button>
+                        <button onclick="showAssignmentTab('participation')" id="participation-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            Participation
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Assignments Tab Content -->
+                <div id="assignments-content" class="p-6">
+                    <div class="space-y-4">
+                        <!-- Assignment 1 -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <div>
+                                    <h4 class="text-lg font-satoshi font-bold">Assignment 1: Variables and Data Types</h4>
+                                    <p class="text-gray-600">Due: September 15, 2025 | Max Points: 100</p>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="px-3 py-1 bg-orange-100 text-orange-800 text-sm font-bold rounded-full">3 Pending</span>
+                                    <button class="btn bg-blue-600 hover:bg-blue-700">Grade All</button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-green-600">29</p>
+                                    <p class="text-sm text-gray-600">Submitted</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-orange-600">3</p>
+                                    <p class="text-sm text-gray-600">Pending</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-purple-600">87.5</p>
+                                    <p class="text-sm text-gray-600">Average</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-blue-600">26</p>
+                                    <p class="text-sm text-gray-600">Graded</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Assignment 2 -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <div>
+                                    <h4 class="text-lg font-satoshi font-bold">Assignment 2: Control Structures</h4>
+                                    <p class="text-gray-600">Due: September 22, 2025 | Max Points: 100</p>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="px-3 py-1 bg-orange-100 text-orange-800 text-sm font-bold rounded-full">5 Pending</span>
+                                    <button class="btn bg-blue-600 hover:bg-blue-700">Grade All</button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-green-600">27</p>
+                                    <p class="text-sm text-gray-600">Submitted</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-orange-600">5</p>
+                                    <p class="text-sm text-gray-600">Pending</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-purple-600">82.3</p>
+                                    <p class="text-sm text-gray-600">Average</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-blue-600">22</p>
+                                    <p class="text-sm text-gray-600">Graded</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Assignment 3 -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <div>
+                                    <h4 class="text-lg font-satoshi font-bold">Assignment 3: Functions and Methods</h4>
+                                    <p class="text-gray-600">Due: September 29, 2025 | Max Points: 100</p>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 text-sm font-bold rounded-full">Not Started</span>
+                                    <button class="btn bg-gray-400 hover:bg-gray-500" disabled>Grade All</button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-gray-400">0</p>
+                                    <p class="text-sm text-gray-600">Submitted</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-gray-400">32</p>
+                                    <p class="text-sm text-gray-600">Pending</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-gray-400">--</p>
+                                    <p class="text-sm text-gray-600">Average</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-gray-400">0</p>
+                                    <p class="text-sm text-gray-600">Graded</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exams Tab Content (Hidden by default) -->
+                <div id="exams-content" class="p-6 hidden">
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <div>
+                                    <h4 class="text-lg font-satoshi font-bold">Midterm Exam</h4>
+                                    <p class="text-gray-600">Date: October 15, 2025 | Max Points: 200</p>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-bold rounded-full">All Graded</span>
+                                    <button class="btn bg-green-600 hover:bg-green-700">View Results</button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-green-600">32</p>
+                                    <p class="text-sm text-gray-600">Completed</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-green-600">0</p>
+                                    <p class="text-sm text-gray-600">Pending</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-purple-600">156.7</p>
+                                    <p class="text-sm text-gray-600">Average</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-blue-600">32</p>
+                                    <p class="text-sm text-gray-600">Graded</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Tab Content (Hidden by default) -->
+                <div id="projects-content" class="p-6 hidden">
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <div>
+                                    <h4 class="text-lg font-satoshi font-bold">Final Project: Personal Portfolio Website</h4>
+                                    <p class="text-gray-600">Due: December 10, 2025 | Max Points: 300</p>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-bold rounded-full">In Progress</span>
+                                    <button class="btn bg-blue-600 hover:bg-blue-700">Monitor Progress</button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-yellow-600">15</p>
+                                    <p class="text-sm text-gray-600">Started</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-gray-600">17</p>
+                                    <p class="text-sm text-gray-600">Not Started</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-purple-600">47%</p>
+                                    <p class="text-sm text-gray-600">Avg Progress</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-blue-600">3</p>
+                                    <p class="text-sm text-gray-600">Submitted</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Participation Tab Content (Hidden by default) -->
+                <div id="participation-content" class="p-6 hidden">
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="text-lg font-satoshi font-bold mb-4">Class Participation Grades</h4>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full">
+                                    <thead>
+                                        <tr class="border-b">
+                                            <th class="text-left py-3">Student Name</th>
+                                            <th class="text-left py-3">Attendance</th>
+                                            <th class="text-left py-3">Participation</th>
+                                            <th class="text-left py-3">Overall Grade</th>
+                                            <th class="text-left py-3">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="py-3">Sarah Johnson</td>
+                                            <td class="py-3">
+                                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">95%</span>
+                                            </td>
+                                            <td class="py-3">A-</td>
+                                            <td class="py-3">
+                                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">A</span>
+                                            </td>
+                                            <td class="py-3">
+                                                <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3">Michael Chen</td>
+                                            <td class="py-3">
+                                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">87%</span>
+                                            </td>
+                                            <td class="py-3">B+</td>
+                                            <td class="py-3">
+                                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">B+</span>
+                                            </td>
+                                            <td class="py-3">
+                                                <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3">Emily Davis</td>
+                                            <td class="py-3">
+                                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">98%</span>
+                                            </td>
+                                            <td class="py-3">A</td>
+                                            <td class="py-3">
+                                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">A</span>
+                                            </td>
+                                            <td class="py-3">
+                                                <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-4">Quick Actions</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button class="btn bg-green-600 hover:bg-green-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Grade All Pending
+                    </button>
+                    <button class="btn bg-blue-600 hover:bg-blue-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Export Gradebook
+                    </button>
+                    <button class="btn bg-purple-600 hover:bg-purple-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10m0 0V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2m10 0v10a2 2 0 01-2 2H9a2 2 0 01-2-2V8m10 0V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2"></path>
+                        </svg>
+                        Send Grade Reports
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectClass(classId) {
+            // Remove active class from all buttons
+            const buttons = ['cs101-btn', 'ds201-btn', 'db301-btn', 'web202-btn', 'se401-btn'];
+            buttons.forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                btn.classList.remove('bg-blue-600', 'hover:bg-blue-700', 'active-class');
+                btn.classList.add('bg-gray-300', 'hover:bg-gray-400', 'text-gray-700');
+            });
+            
+            // Add active class to selected button
+            const activeBtn = document.getElementById(classId + '-btn');
+            activeBtn.classList.remove('bg-gray-300', 'hover:bg-gray-400', 'text-gray-700');
+            activeBtn.classList.add('bg-blue-600', 'hover:bg-blue-700', 'active-class');
+        }
+
+        function showAssignmentTab(tabName) {
+            // Hide all content
+            document.getElementById('assignments-content').classList.add('hidden');
+            document.getElementById('exams-content').classList.add('hidden');
+            document.getElementById('projects-content').classList.add('hidden');
+            document.getElementById('participation-content').classList.add('hidden');
+            
+            // Remove active styles from all tabs
+            const tabs = ['assignments-tab', 'exams-tab', 'projects-tab', 'participation-tab'];
+            tabs.forEach(tab => {
+                const tabElement = document.getElementById(tab);
+                tabElement.classList.remove('border-blue-500', 'text-blue-600');
+                tabElement.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            // Show selected content and activate tab
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            const activeTab = document.getElementById(tabName + '-tab');
+            activeTab.classList.remove('border-transparent', 'text-gray-500');
+            activeTab.classList.add('border-blue-500', 'text-blue-600');
+        }
+    </script>
+</body>
+</html>

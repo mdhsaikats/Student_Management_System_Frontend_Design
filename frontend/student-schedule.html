@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>My Schedule - Student Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-green-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">My Schedule</h1>
+                <span class="text-green-200">|</span>
+                <span class="text-green-200">Student Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="student-dashboard.html" class="btn bg-green-700 hover:bg-green-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-green-700 hover:bg-green-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">Class Schedule</h2>
+            <p class="text-gray-600">Fall Semester 2024 | Week of December 9-15, 2024</p>
+        </div>
+
+        <!-- Schedule Controls -->
+        <div class="bg-white p-4 rounded-lg shadow-lg mb-6">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <button class="btn bg-purple-600 hover:bg-purple-700">← Previous Week</button>
+                    <span class="font-satoshi font-bold text-lg">Current Week</span>
+                    <button class="btn bg-purple-600 hover:bg-purple-700">Next Week →</button>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="btn bg-blue-600 hover:bg-blue-700">Week View</button>
+                    <button class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Month View</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Schedule Table -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider w-20">Time</th>
+                            <th class="px-4 py-3 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">Monday</th>
+                            <th class="px-4 py-3 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">Tuesday</th>
+                            <th class="px-4 py-3 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">Wednesday</th>
+                            <th class="px-4 py-3 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">Thursday</th>
+                            <th class="px-4 py-3 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <!-- 8:00 AM -->
+                        <tr>
+                            <td class="px-4 py-6 text-sm font-bold text-gray-600 border-r">8:00 AM</td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-blue-100 p-3 rounded-lg">
+                                    <p class="font-bold text-blue-800">MATH 201</p>
+                                    <p class="text-xs text-blue-600">Calculus II</p>
+                                    <p class="text-xs text-blue-600">Room 304</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-blue-100 p-3 rounded-lg">
+                                    <p class="font-bold text-blue-800">MATH 201</p>
+                                    <p class="text-xs text-blue-600">Calculus II</p>
+                                    <p class="text-xs text-blue-600">Room 304</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-blue-100 p-3 rounded-lg">
+                                    <p class="font-bold text-blue-800">MATH 201</p>
+                                    <p class="text-xs text-blue-600">Calculus II</p>
+                                    <p class="text-xs text-blue-600">Room 304</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- 9:00 AM -->
+                        <tr>
+                            <td class="px-4 py-6 text-sm font-bold text-gray-600 border-r">9:00 AM</td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-green-100 p-3 rounded-lg">
+                                    <p class="font-bold text-green-800">CS 301</p>
+                                    <p class="text-xs text-green-600">Data Structures</p>
+                                    <p class="text-xs text-green-600">Lab 201</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-green-100 p-3 rounded-lg">
+                                    <p class="font-bold text-green-800">CS 301</p>
+                                    <p class="text-xs text-green-600">Data Structures</p>
+                                    <p class="text-xs text-green-600">Lab 201</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                        </tr>
+                        <!-- 10:00 AM -->
+                        <tr>
+                            <td class="px-4 py-6 text-sm font-bold text-gray-600 border-r">10:00 AM</td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-purple-100 p-3 rounded-lg">
+                                    <p class="font-bold text-purple-800">PHYS 205</p>
+                                    <p class="text-xs text-purple-600">Modern Physics</p>
+                                    <p class="text-xs text-purple-600">Room 410</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-purple-100 p-3 rounded-lg">
+                                    <p class="font-bold text-purple-800">PHYS 205</p>
+                                    <p class="text-xs text-purple-600">Modern Physics</p>
+                                    <p class="text-xs text-purple-600">Room 410</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-purple-100 p-3 rounded-lg">
+                                    <p class="font-bold text-purple-800">PHYS 205</p>
+                                    <p class="text-xs text-purple-600">Modern Physics</p>
+                                    <p class="text-xs text-purple-600">Room 410</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- 11:00 AM -->
+                        <tr>
+                            <td class="px-4 py-6 text-sm font-bold text-gray-600 border-r">11:00 AM</td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-orange-100 p-3 rounded-lg">
+                                    <p class="font-bold text-orange-800">CHEM 301</p>
+                                    <p class="text-xs text-orange-600">Organic Chemistry</p>
+                                    <p class="text-xs text-orange-600">Lab 105</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-orange-100 p-3 rounded-lg">
+                                    <p class="font-bold text-orange-800">CHEM 301</p>
+                                    <p class="text-xs text-orange-600">Organic Chemistry</p>
+                                    <p class="text-xs text-orange-600">Lab 105</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                        </tr>
+                        <!-- 12:00 PM -->
+                        <tr>
+                            <td class="px-4 py-6 text-sm font-bold text-gray-600 border-r">12:00 PM</td>
+                            <td class="px-4 py-6 text-center bg-yellow-50">
+                                <p class="text-yellow-700 font-bold">LUNCH BREAK</p>
+                            </td>
+                            <td class="px-4 py-6 text-center bg-yellow-50">
+                                <p class="text-yellow-700 font-bold">LUNCH BREAK</p>
+                            </td>
+                            <td class="px-4 py-6 text-center bg-yellow-50">
+                                <p class="text-yellow-700 font-bold">LUNCH BREAK</p>
+                            </td>
+                            <td class="px-4 py-6 text-center bg-yellow-50">
+                                <p class="text-yellow-700 font-bold">LUNCH BREAK</p>
+                            </td>
+                            <td class="px-4 py-6 text-center bg-yellow-50">
+                                <p class="text-yellow-700 font-bold">LUNCH BREAK</p>
+                            </td>
+                        </tr>
+                        <!-- 1:00 PM -->
+                        <tr>
+                            <td class="px-4 py-6 text-sm font-bold text-gray-600 border-r">1:00 PM</td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-indigo-100 p-3 rounded-lg">
+                                    <p class="font-bold text-indigo-800">ENG 201</p>
+                                    <p class="text-xs text-indigo-600">Literature Analysis</p>
+                                    <p class="text-xs text-indigo-600">Room 205</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-indigo-100 p-3 rounded-lg">
+                                    <p class="font-bold text-indigo-800">ENG 201</p>
+                                    <p class="text-xs text-indigo-600">Literature Analysis</p>
+                                    <p class="text-xs text-indigo-600">Room 205</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center"></td>
+                        </tr>
+                        <!-- 2:00 PM -->
+                        <tr>
+                            <td class="px-4 py-6 text-sm font-bold text-gray-600 border-r">2:00 PM</td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-pink-100 p-3 rounded-lg">
+                                    <p class="font-bold text-pink-800">Study Hall</p>
+                                    <p class="text-xs text-pink-600">Library</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                            <td class="px-4 py-6 text-center">
+                                <div class="bg-pink-100 p-3 rounded-lg">
+                                    <p class="font-bold text-pink-800">Study Hall</p>
+                                    <p class="text-xs text-pink-600">Library</p>
+                                </div>
+                            </td>
+                            <td class="px-4 py-6 text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Today's Schedule & Upcoming Events -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- Today's Classes -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-satoshi font-bold mb-4">Today's Classes</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center p-3 bg-blue-50 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold mr-4">
+                            8:00
+                        </div>
+                        <div>
+                            <p class="font-satoshi font-bold">MATH 201 - Calculus II</p>
+                            <p class="text-sm text-gray-600">Room 304 • Prof. Dr. Smith</p>
+                            <p class="text-xs text-blue-600">Starting in 2 hours</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                        <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center text-white font-bold mr-4">
+                            10:00
+                        </div>
+                        <div>
+                            <p class="font-satoshi font-bold">PHYS 205 - Modern Physics</p>
+                            <p class="text-sm text-gray-600">Room 410 • Prof. Williams</p>
+                            <p class="text-xs text-purple-600">Starting in 4 hours</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-3 bg-indigo-50 rounded-lg">
+                        <div class="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold mr-4">
+                            13:00
+                        </div>
+                        <div>
+                            <p class="font-satoshi font-bold">ENG 201 - Literature Analysis</p>
+                            <p class="text-sm text-gray-600">Room 205 • Prof. Davis</p>
+                            <p class="text-xs text-indigo-600">Starting in 7 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Events -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-satoshi font-bold mb-4">Upcoming Events</h3>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-red-500 pl-4 py-2">
+                        <p class="font-satoshi font-bold text-red-800">PHYS 205 Final Exam</p>
+                        <p class="text-sm text-gray-600">December 15, 2024 • 9:00 AM</p>
+                        <p class="text-xs text-red-600">In 6 days</p>
+                    </div>
+                    <div class="border-l-4 border-orange-500 pl-4 py-2">
+                        <p class="font-satoshi font-bold text-orange-800">CHEM 301 Lab Report Due</p>
+                        <p class="text-sm text-gray-600">December 10, 2024 • 11:59 PM</p>
+                        <p class="text-xs text-orange-600">Tomorrow</p>
+                    </div>
+                    <div class="border-l-4 border-green-500 pl-4 py-2">
+                        <p class="font-satoshi font-bold text-green-800">CS 301 Final Project</p>
+                        <p class="text-sm text-gray-600">December 18, 2024 • 5:00 PM</p>
+                        <p class="text-xs text-green-600">In 9 days</p>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <p class="font-satoshi font-bold text-blue-800">Registration Opens</p>
+                        <p class="text-sm text-gray-600">December 20, 2024 • 8:00 AM</p>
+                        <p class="text-xs text-blue-600">Spring 2025 Semester</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Statistics -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Total Classes</h3>
+                <p class="text-2xl font-bold text-green-600">18</p>
+                <p class="text-xs text-gray-500">This Week</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Study Hours</h3>
+                <p class="text-2xl font-bold text-blue-600">12</p>
+                <p class="text-xs text-gray-500">Scheduled</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Free Time</h3>
+                <p class="text-2xl font-bold text-purple-600">25</p>
+                <p class="text-xs text-gray-500">Hours Available</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Assignments Due</h3>
+                <p class="text-2xl font-bold text-orange-600">3</p>
+                <p class="text-xs text-gray-500">This Week</p>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-satoshi font-bold mb-4">Schedule Actions</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <button class="btn bg-green-600 hover:bg-green-700">Export Schedule</button>
+                <button class="btn bg-blue-600 hover:bg-blue-700">Add Personal Event</button>
+                <button class="btn bg-purple-600 hover:bg-purple-700">Set Reminders</button>
+                <button class="btn bg-orange-600 hover:bg-orange-700">Print Schedule</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>Manage Users - Admin Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-purple-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">Manage Users</h1>
+                <span class="text-purple-200">|</span>
+                <span class="text-purple-200">Admin Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="admin-dashboard.html" class="btn bg-purple-700 hover:bg-purple-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-purple-700 hover:bg-purple-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">User Management</h2>
+            <p class="text-gray-600">Manage all system users including students, teachers, and administrators</p>
+        </div>
+
+        <!-- User Statistics -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-3xl font-bold text-green-600 mb-2">1,247</div>
+                <div class="text-gray-600">Total Students</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-3xl font-bold text-blue-600 mb-2">84</div>
+                <div class="text-gray-600">Teachers</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-3xl font-bold text-purple-600 mb-2">12</div>
+                <div class="text-gray-600">Administrators</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-3xl font-bold text-orange-600 mb-2">1,343</div>
+                <div class="text-gray-600">Total Users</div>
+            </div>
+        </div>
+
+        <!-- User Management Controls -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-4 md:mb-0">User Directory</h3>
+                <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                    <button onclick="openAddUserModal()" class="btn bg-green-600 hover:bg-green-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Add User
+                    </button>
+                    <button class="btn bg-blue-600 hover:bg-blue-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Import Users
+                    </button>
+                    <button class="btn bg-purple-600 hover:bg-purple-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Export Users
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filters and Search -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div>
+                    <label class="block text-gray-700 font-satoshi font-bold mb-2">Search Users</label>
+                    <input type="text" id="userSearch" class="input" placeholder="Search by name, email, or ID">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-satoshi font-bold mb-2">User Role</label>
+                    <select id="roleFilter" class="input">
+                        <option value="">All Roles</option>
+                        <option value="student">Students</option>
+                        <option value="teacher">Teachers</option>
+                        <option value="admin">Administrators</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-satoshi font-bold mb-2">Status</label>
+                    <select id="statusFilter" class="input">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="suspended">Suspended</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button onclick="filterUsers()" class="btn bg-purple-600 hover:bg-purple-700 w-full">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z"></path>
+                        </svg>
+                        Filter
+                    </button>
+                </div>
+            </div>
+
+            <!-- User Table -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="text-left py-3">
+                                <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                            </th>
+                            <th class="text-left py-3">User</th>
+                            <th class="text-left py-3">Role</th>
+                            <th class="text-left py-3">Status</th>
+                            <th class="text-left py-3">Last Login</th>
+                            <th class="text-left py-3">Created</th>
+                            <th class="text-left py-3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-3">
+                                <input type="checkbox" class="user-checkbox" value="1">
+                            </td>
+                            <td class="py-3">
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://cdn.pixabay.com/photo/2024/08/30/10/15/woman-9009013_1280.png" alt="User" class="w-10 h-10 rounded-full">
+                                    <div>
+                                        <p class="font-bold">Sarah Johnson</p>
+                                        <p class="text-sm text-gray-600">sarah.johnson@university.edu</p>
+                                        <p class="text-sm text-gray-500">ID: ST-001234</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-3">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Student</span>
+                            </td>
+                            <td class="py-3">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                            </td>
+                            <td class="py-3">Aug 21, 2025 09:30</td>
+                            <td class="py-3">Sep 01, 2022</td>
+                            <td class="py-3">
+                                <div class="flex space-x-2">
+                                    <button onclick="editUser(1)" class="text-blue-600 hover:text-blue-800">Edit</button>
+                                    <button onclick="viewUser(1)" class="text-green-600 hover:text-green-800">View</button>
+                                    <button onclick="suspendUser(1)" class="text-red-600 hover:text-red-800">Suspend</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3">
+                                <input type="checkbox" class="user-checkbox" value="2">
+                            </td>
+                            <td class="py-3">
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" alt="User" class="w-10 h-10 rounded-full">
+                                    <div>
+                                        <p class="font-bold">Dr. Michael Thompson</p>
+                                        <p class="text-sm text-gray-600">m.thompson@university.edu</p>
+                                        <p class="text-sm text-gray-500">ID: TC-005678</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-3">
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Teacher</span>
+                            </td>
+                            <td class="py-3">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                            </td>
+                            <td class="py-3">Aug 21, 2025 08:15</td>
+                            <td class="py-3">Jun 15, 2020</td>
+                            <td class="py-3">
+                                <div class="flex space-x-2">
+                                    <button onclick="editUser(2)" class="text-blue-600 hover:text-blue-800">Edit</button>
+                                    <button onclick="viewUser(2)" class="text-green-600 hover:text-green-800">View</button>
+                                    <button onclick="suspendUser(2)" class="text-red-600 hover:text-red-800">Suspend</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3">
+                                <input type="checkbox" class="user-checkbox" value="3">
+                            </td>
+                            <td class="py-3">
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://cdn.pixabay.com/photo/2024/08/30/10/15/woman-9009013_1280.png" alt="User" class="w-10 h-10 rounded-full">
+                                    <div>
+                                        <p class="font-bold">Admin User</p>
+                                        <p class="text-sm text-gray-600">admin@university.edu</p>
+                                        <p class="text-sm text-gray-500">ID: AD-000001</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-3">
+                                <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Admin</span>
+                            </td>
+                            <td class="py-3">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                            </td>
+                            <td class="py-3">Aug 21, 2025 07:45</td>
+                            <td class="py-3">Jan 01, 2020</td>
+                            <td class="py-3">
+                                <div class="flex space-x-2">
+                                    <button onclick="editUser(3)" class="text-blue-600 hover:text-blue-800">Edit</button>
+                                    <button onclick="viewUser(3)" class="text-green-600 hover:text-green-800">View</button>
+                                    <span class="text-gray-400">Protected</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3">
+                                <input type="checkbox" class="user-checkbox" value="4">
+                            </td>
+                            <td class="py-3">
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" alt="User" class="w-10 h-10 rounded-full">
+                                    <div>
+                                        <p class="font-bold">David Wilson</p>
+                                        <p class="text-sm text-gray-600">david.wilson@university.edu</p>
+                                        <p class="text-sm text-gray-500">ID: ST-001235</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-3">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Student</span>
+                            </td>
+                            <td class="py-3">
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Suspended</span>
+                            </td>
+                            <td class="py-3">Aug 18, 2025 14:22</td>
+                            <td class="py-3">Sep 01, 2022</td>
+                            <td class="py-3">
+                                <div class="flex space-x-2">
+                                    <button onclick="editUser(4)" class="text-blue-600 hover:text-blue-800">Edit</button>
+                                    <button onclick="viewUser(4)" class="text-green-600 hover:text-green-800">View</button>
+                                    <button onclick="reactivateUser(4)" class="text-green-600 hover:text-green-800">Reactivate</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-between items-center mt-6">
+                <div class="text-sm text-gray-600">
+                    Showing 1 to 4 of 1,343 users
+                </div>
+                <div class="flex space-x-2">
+                    <button class="px-3 py-1 border rounded hover:bg-gray-50">Previous</button>
+                    <button class="px-3 py-1 bg-purple-600 text-white rounded">1</button>
+                    <button class="px-3 py-1 border rounded hover:bg-gray-50">2</button>
+                    <button class="px-3 py-1 border rounded hover:bg-gray-50">3</button>
+                    <button class="px-3 py-1 border rounded hover:bg-gray-50">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bulk Actions -->
+        <div id="bulkActions" class="bg-white rounded-lg shadow-lg p-6 hidden">
+            <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-4">Bulk Actions</h3>
+            <div class="flex space-x-4">
+                <button class="btn bg-green-600 hover:bg-green-700">Activate Selected</button>
+                <button class="btn bg-yellow-600 hover:bg-yellow-700">Suspend Selected</button>
+                <button class="btn bg-blue-600 hover:bg-blue-700">Export Selected</button>
+                <button class="btn bg-red-600 hover:bg-red-700">Delete Selected</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal (Hidden by default) -->
+    <div id="addUserModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center h-full p-4">
+            <div class="bg-white rounded-lg p-6 w-full max-w-2xl max-h-screen overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold">Add New User</h3>
+                    <button onclick="closeAddUserModal()" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">First Name</label>
+                            <input type="text" class="input" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Last Name</label>
+                            <input type="text" class="input" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-satoshi font-bold mb-2">Email Address</label>
+                        <input type="email" class="input" required>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">User Role</label>
+                            <select class="input" required>
+                                <option value="">Select Role</option>
+                                <option value="student">Student</option>
+                                <option value="teacher">Teacher</option>
+                                <option value="admin">Administrator</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Department</label>
+                            <select class="input">
+                                <option value="">Select Department</option>
+                                <option value="cs">Computer Science</option>
+                                <option value="math">Mathematics</option>
+                                <option value="physics">Physics</option>
+                                <option value="chemistry">Chemistry</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-satoshi font-bold mb-2">Phone Number</label>
+                        <input type="tel" class="input">
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2" checked>
+                            <span>Send welcome email</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Force password reset on first login</span>
+                        </label>
+                    </div>
+                    
+                    <div class="flex space-x-4 pt-4">
+                        <button type="submit" class="btn bg-green-600 hover:bg-green-700">Create User</button>
+                        <button type="button" onclick="closeAddUserModal()" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openAddUserModal() {
+            document.getElementById('addUserModal').classList.remove('hidden');
+        }
+
+        function closeAddUserModal() {
+            document.getElementById('addUserModal').classList.add('hidden');
+        }
+
+        function toggleSelectAll() {
+            const selectAll = document.getElementById('selectAll');
+            const checkboxes = document.querySelectorAll('.user-checkbox');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAll.checked;
+            });
+            
+            toggleBulkActions();
+        }
+
+        function toggleBulkActions() {
+            const checkedBoxes = document.querySelectorAll('.user-checkbox:checked');
+            const bulkActions = document.getElementById('bulkActions');
+            
+            if (checkedBoxes.length > 0) {
+                bulkActions.classList.remove('hidden');
+            } else {
+                bulkActions.classList.add('hidden');
+            }
+        }
+
+        function filterUsers() {
+            const search = document.getElementById('userSearch').value;
+            const role = document.getElementById('roleFilter').value;
+            const status = document.getElementById('statusFilter').value;
+            
+            console.log('Filtering users:', { search, role, status });
+            // Implement actual filtering logic here
+        }
+
+        function editUser(userId) {
+            alert(`Edit user ${userId}`);
+        }
+
+        function viewUser(userId) {
+            alert(`View user ${userId}`);
+        }
+
+        function suspendUser(userId) {
+            if (confirm('Are you sure you want to suspend this user?')) {
+                alert(`User ${userId} suspended`);
+            }
+        }
+
+        function reactivateUser(userId) {
+            if (confirm('Are you sure you want to reactivate this user?')) {
+                alert(`User ${userId} reactivated`);
+            }
+        }
+
+        // Add event listeners to checkboxes
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.user-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', toggleBulkActions);
+            });
+        });
+    </script>
+</body>
+</html>

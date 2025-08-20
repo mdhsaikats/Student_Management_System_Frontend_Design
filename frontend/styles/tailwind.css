@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add custom fonts */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Panchang', sans-serif;
+  }
+
+  body {
+    font-family: 'Satoshi', sans-serif;
+  }
+}
+
+/* Or if you want utility classes */
+@layer utilities {
+  .font-panchang {
+    font-family: 'Panchang', sans-serif;
+  }
+  .font-satoshi {
+    font-family: 'Satoshi', sans-serif;
+  }
+  .font-boska {
+    font-family: 'Boska', sans-serif;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-all duration-200;
+  }
+  
+  .card {
+    @apply p-6 bg-white shadow-md rounded-lg;
+  }
+  
+  .input {
+    @apply border border-gray-300 p-2 rounded w-full;
+  }
+
+  .active-role {
+    @apply transform scale-105 shadow-lg;
+  }
+
+  .hover-active {
+    @apply transform scale-105 shadow-lg;
+  }
+}

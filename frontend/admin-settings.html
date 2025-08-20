@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>System Settings - Admin Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-purple-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">System Settings</h1>
+                <span class="text-purple-200">|</span>
+                <span class="text-purple-200">Admin Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="admin-dashboard.html" class="btn bg-purple-700 hover:bg-purple-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-purple-700 hover:bg-purple-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">System Settings</h2>
+            <p class="text-gray-600">Configure system-wide settings, preferences, and customizations</p>
+        </div>
+
+        <!-- Settings Navigation -->
+        <div class="bg-white rounded-lg shadow-lg">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8 px-6" aria-label="Tabs">
+                    <button onclick="showTab('general')" id="general-tab" class="py-4 px-1 border-b-2 border-purple-500 font-medium text-sm text-purple-600">
+                        General Settings
+                    </button>
+                    <button onclick="showTab('email')" id="email-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Email Configuration
+                    </button>
+                    <button onclick="showTab('notifications')" id="notifications-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Notifications
+                    </button>
+                    <button onclick="showTab('integration')" id="integration-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Integrations
+                    </button>
+                    <button onclick="showTab('maintenance')" id="maintenance-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Maintenance
+                    </button>
+                </nav>
+            </div>
+
+            <!-- General Settings Tab -->
+            <div id="general-content" class="p-6">
+                <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-6">General System Settings</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Basic Settings -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Basic Configuration</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">School Name</label>
+                                <input type="text" class="input" value="Central High School" placeholder="Enter school name">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">School Address</label>
+                                <textarea class="input" rows="3" placeholder="Enter complete address">123 Education Street
+City, State 12345
+United States</textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Contact Phone</label>
+                                <input type="tel" class="input" value="+1 (555) 123-4567" placeholder="Enter phone number">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Contact Email</label>
+                                <input type="email" class="input" value="info@centralhs.edu" placeholder="Enter email address">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Time Zone</label>
+                                <select class="input">
+                                    <option value="EST">Eastern Standard Time (EST)</option>
+                                    <option value="CST">Central Standard Time (CST)</option>
+                                    <option value="MST">Mountain Standard Time (MST)</option>
+                                    <option value="PST">Pacific Standard Time (PST)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Academic Settings -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Academic Configuration</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Default Semester Length</label>
+                                <select class="input">
+                                    <option value="16">16 weeks</option>
+                                    <option value="15">15 weeks</option>
+                                    <option value="14">14 weeks</option>
+                                    <option value="12">12 weeks</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Grading Scale</label>
+                                <select class="input">
+                                    <option value="standard">Standard (A-F)</option>
+                                    <option value="percentage">Percentage (0-100)</option>
+                                    <option value="gpa">GPA Scale (0.0-4.0)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Attendance Tracking</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="attendance" value="period" class="mr-2" checked>
+                                        <span>Per Class Period</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="attendance" value="daily" class="mr-2">
+                                        <span>Daily Attendance Only</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Late Assignment Policy</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Allow late submissions</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Apply grade penalty for late work</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Parent Portal Access</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Enable parent access to grades</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Enable parent access to attendance</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Enable parent access to assignments</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex space-x-4">
+                    <button onclick="saveGeneralSettings()" class="btn bg-green-600 hover:bg-green-700">Save Changes</button>
+                    <button onclick="resetGeneralSettings()" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Reset to Defaults</button>
+                </div>
+            </div>
+
+            <!-- Email Configuration Tab -->
+            <div id="email-content" class="p-6 hidden">
+                <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-6">Email Configuration</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- SMTP Settings -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">SMTP Configuration</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">SMTP Server</label>
+                                <input type="text" class="input" value="smtp.gmail.com" placeholder="Enter SMTP server">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Port</label>
+                                <input type="number" class="input" value="587" placeholder="Enter port number">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Security</label>
+                                <select class="input">
+                                    <option value="tls">TLS</option>
+                                    <option value="ssl">SSL</option>
+                                    <option value="none">None</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Username</label>
+                                <input type="text" class="input" value="noreply@centralhs.edu" placeholder="Enter username">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Password</label>
+                                <input type="password" class="input" placeholder="Enter password">
+                            </div>
+                            
+                            <div class="flex space-x-2">
+                                <button onclick="testEmailConnection()" class="btn bg-blue-600 hover:bg-blue-700">Test Connection</button>
+                                <button onclick="saveEmailSettings()" class="btn bg-green-600 hover:bg-green-700">Save Settings</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Email Templates -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Email Templates</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Welcome Email Subject</label>
+                                <input type="text" class="input" value="Welcome to Central High School" placeholder="Enter subject">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Welcome Email Template</label>
+                                <textarea class="input" rows="4" placeholder="Enter email template">Dear {student_name},
+
+Welcome to Central High School! Your account has been created successfully.
+
+Login URL: {login_url}
+Username: {username}
+Temporary Password: {password}
+
+Please log in and change your password immediately.
+
+Best regards,
+Central High School Administration</textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Password Reset Subject</label>
+                                <input type="text" class="input" value="Password Reset Request" placeholder="Enter subject">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">From Email Address</label>
+                                <input type="email" class="input" value="noreply@centralhs.edu" placeholder="Enter from address">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">From Name</label>
+                                <input type="text" class="input" value="Central High School" placeholder="Enter from name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Tab -->
+            <div id="notifications-content" class="p-6 hidden">
+                <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-6">Notification Settings</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- System Notifications -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">System Notifications</h4>
+                        <div class="space-y-4">
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">Grade Updates</h5>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Notify students of new grades</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Notify parents of grade changes</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Weekly grade summary emails</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">Attendance Alerts</h5>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Notify parents of absences</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Daily attendance summaries</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Excessive absence warnings</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">Assignment Reminders</h5>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Assignment due date reminders</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Late assignment notifications</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Weekly assignment digest</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Administrative Alerts -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Administrative Alerts</h4>
+                        <div class="space-y-4">
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">System Security</h5>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Failed login attempts</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Unusual access patterns</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>System maintenance notifications</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">Data Backup</h5>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Successful backup notifications</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2" checked>
+                                        <span>Failed backup alerts</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Weekly backup summaries</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">User Management</h5>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>New user registrations</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Account deactivations</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>Permission changes</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <button onclick="saveNotificationSettings()" class="btn bg-green-600 hover:bg-green-700">Save Notification Settings</button>
+                </div>
+            </div>
+
+            <!-- Integrations Tab -->
+            <div id="integration-content" class="p-6 hidden">
+                <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-6">Third-Party Integrations</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Google Workspace -->
+                    <div class="border rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Google Workspace</h4>
+                                <p class="text-sm text-gray-600">Email and document integration</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Connected</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Email Sync</span>
+                                <span class="text-green-600">✓</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Calendar Sync</span>
+                                <span class="text-green-600">✓</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Drive Integration</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                        </div>
+                        <button class="btn bg-blue-600 hover:bg-blue-700 text-sm mt-4 w-full">Configure</button>
+                    </div>
+
+                    <!-- Canvas LMS -->
+                    <div class="border rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Canvas LMS</h4>
+                                <p class="text-sm text-gray-600">Learning management system</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Pending</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Grade Sync</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Assignment Sync</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Student Enrollment</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                        </div>
+                        <button class="btn bg-orange-600 hover:bg-orange-700 text-sm mt-4 w-full">Setup</button>
+                    </div>
+
+                    <!-- Zoom -->
+                    <div class="border rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 12l4 4 4-4V8H8v4z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Zoom</h4>
+                                <p class="text-sm text-gray-600">Video conferencing platform</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Not Connected</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Class Meetings</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Recording Access</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Calendar Integration</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                        </div>
+                        <button class="btn bg-gray-600 hover:bg-gray-700 text-sm mt-4 w-full">Connect</button>
+                    </div>
+
+                    <!-- Microsoft Teams -->
+                    <div class="border rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H4V4h16v16z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Microsoft Teams</h4>
+                                <p class="text-sm text-gray-600">Collaboration platform</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Not Connected</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Team Creation</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>File Sharing</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Chat Integration</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                        </div>
+                        <button class="btn bg-gray-600 hover:bg-gray-700 text-sm mt-4 w-full">Connect</button>
+                    </div>
+
+                    <!-- PowerSchool -->
+                    <div class="border rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">PowerSchool</h4>
+                                <p class="text-sm text-gray-600">Student information system</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Connected</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Student Data Sync</span>
+                                <span class="text-green-600">✓</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Grade Import/Export</span>
+                                <span class="text-green-600">✓</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Attendance Sync</span>
+                                <span class="text-green-600">✓</span>
+                            </div>
+                        </div>
+                        <button class="btn bg-red-600 hover:bg-red-700 text-sm mt-4 w-full">Configure</button>
+                    </div>
+
+                    <!-- Blackboard -->
+                    <div class="border rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-black rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Blackboard</h4>
+                                <p class="text-sm text-gray-600">Learning management system</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Not Connected</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Course Integration</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Grade Passback</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>User Provisioning</span>
+                                <span class="text-gray-400">○</span>
+                            </div>
+                        </div>
+                        <button class="btn bg-gray-600 hover:bg-gray-700 text-sm mt-4 w-full">Connect</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maintenance Tab -->
+            <div id="maintenance-content" class="p-6 hidden">
+                <h3 class="text-xl font-satoshi font-bold text-gray-800 mb-6">System Maintenance</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- System Status -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">System Status</h4>
+                        <div class="space-y-4">
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h5 class="font-bold text-green-800">Database Server</h5>
+                                        <p class="text-green-600 text-sm">Running normally</p>
+                                    </div>
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h5 class="font-bold text-green-800">Web Server</h5>
+                                        <p class="text-green-600 text-sm">Online - 99.9% uptime</p>
+                                    </div>
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h5 class="font-bold text-yellow-800">Email Service</h5>
+                                        <p class="text-yellow-600 text-sm">Minor delays in delivery</p>
+                                    </div>
+                                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h5 class="font-bold text-green-800">Backup System</h5>
+                                        <p class="text-green-600 text-sm">Last backup: 2 hours ago</p>
+                                    </div>
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Maintenance Tools -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Maintenance Tools</h4>
+                        <div class="space-y-4">
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">Database Maintenance</h5>
+                                <p class="text-gray-600 text-sm mb-3">Optimize database performance and clean up old data</p>
+                                <div class="flex space-x-2">
+                                    <button onclick="optimizeDatabase()" class="btn bg-blue-600 hover:bg-blue-700 text-sm">Optimize</button>
+                                    <button onclick="cleanupDatabase()" class="btn bg-orange-600 hover:bg-orange-700 text-sm">Cleanup</button>
+                                </div>
+                            </div>
+                            
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">Cache Management</h5>
+                                <p class="text-gray-600 text-sm mb-3">Clear system caches to improve performance</p>
+                                <div class="flex space-x-2">
+                                    <button onclick="clearCache()" class="btn bg-purple-600 hover:bg-purple-700 text-sm">Clear Cache</button>
+                                    <button onclick="refreshCache()" class="btn bg-purple-500 hover:bg-purple-600 text-sm">Refresh</button>
+                                </div>
+                            </div>
+                            
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">System Updates</h5>
+                                <p class="text-gray-600 text-sm mb-3">Check for and install system updates</p>
+                                <div class="flex space-x-2">
+                                    <button onclick="checkUpdates()" class="btn bg-green-600 hover:bg-green-700 text-sm">Check Updates</button>
+                                    <button onclick="scheduleUpdates()" class="btn bg-green-500 hover:bg-green-600 text-sm">Schedule</button>
+                                </div>
+                            </div>
+                            
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">Maintenance Mode</h5>
+                                <p class="text-gray-600 text-sm mb-3">Enable maintenance mode for system updates</p>
+                                <div class="flex space-x-2">
+                                    <button onclick="enableMaintenance()" class="btn bg-red-600 hover:bg-red-700 text-sm">Enable</button>
+                                    <button onclick="scheduleMaintenance()" class="btn bg-red-500 hover:bg-red-600 text-sm">Schedule</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- System Information -->
+                <div class="mt-8">
+                    <h4 class="text-lg font-satoshi font-bold mb-4">System Information</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h5 class="font-bold mb-2">System Version</h5>
+                            <p class="text-gray-600">v2.4.1</p>
+                            <p class="text-sm text-gray-500">Released: Oct 15, 2024</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h5 class="font-bold mb-2">Database Version</h5>
+                            <p class="text-gray-600">MySQL 8.0.35</p>
+                            <p class="text-sm text-gray-500">Schema: v2.1.8</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h5 class="font-bold mb-2">Last Maintenance</h5>
+                            <p class="text-gray-600">Nov 5, 2024</p>
+                            <p class="text-sm text-gray-500">Duration: 2 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all content
+            document.getElementById('general-content').classList.add('hidden');
+            document.getElementById('email-content').classList.add('hidden');
+            document.getElementById('notifications-content').classList.add('hidden');
+            document.getElementById('integration-content').classList.add('hidden');
+            document.getElementById('maintenance-content').classList.add('hidden');
+            
+            // Remove active styles from all tabs
+            const tabs = ['general-tab', 'email-tab', 'notifications-tab', 'integration-tab', 'maintenance-tab'];
+            tabs.forEach(tab => {
+                const tabElement = document.getElementById(tab);
+                tabElement.classList.remove('border-purple-500', 'text-purple-600');
+                tabElement.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            // Show selected content and activate tab
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            const activeTab = document.getElementById(tabName + '-tab');
+            activeTab.classList.remove('border-transparent', 'text-gray-500');
+            activeTab.classList.add('border-purple-500', 'text-purple-600');
+        }
+
+        function saveGeneralSettings() {
+            alert('General settings saved successfully!');
+        }
+
+        function resetGeneralSettings() {
+            if (confirm('Are you sure you want to reset all settings to defaults?')) {
+                alert('Settings reset to defaults.');
+            }
+        }
+
+        function testEmailConnection() {
+            alert('Testing email connection...');
+        }
+
+        function saveEmailSettings() {
+            alert('Email settings saved successfully!');
+        }
+
+        function saveNotificationSettings() {
+            alert('Notification settings saved successfully!');
+        }
+
+        function optimizeDatabase() {
+            alert('Database optimization started...');
+        }
+
+        function cleanupDatabase() {
+            if (confirm('This will remove old data. Continue?')) {
+                alert('Database cleanup started...');
+            }
+        }
+
+        function clearCache() {
+            alert('Cache cleared successfully!');
+        }
+
+        function refreshCache() {
+            alert('Cache refreshed successfully!');
+        }
+
+        function checkUpdates() {
+            alert('Checking for system updates...');
+        }
+
+        function scheduleUpdates() {
+            alert('Opening update scheduler...');
+        }
+
+        function enableMaintenance() {
+            if (confirm('This will put the system in maintenance mode. Continue?')) {
+                alert('Maintenance mode enabled.');
+            }
+        }
+
+        function scheduleMaintenance() {
+            alert('Opening maintenance scheduler...');
+        }
+    </script>
+</body>
+</html>

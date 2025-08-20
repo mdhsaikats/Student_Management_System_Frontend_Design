@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>My Grades - Student Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-green-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">My Grades</h1>
+                <span class="text-green-200">|</span>
+                <span class="text-green-200">Student Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="student-dashboard.html" class="btn bg-green-700 hover:bg-green-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-green-700 hover:bg-green-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">Academic Performance</h2>
+            <p class="text-gray-600">Academic Year 2024-2025 | Current Semester</p>
+        </div>
+
+        <!-- GPA Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Current GPA</h3>
+                <p class="text-3xl font-bold text-green-600">3.45</p>
+                <p class="text-sm text-gray-500 mt-1">Out of 4.0</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Cumulative GPA</h3>
+                <p class="text-3xl font-bold text-blue-600">3.52</p>
+                <p class="text-sm text-gray-500 mt-1">Overall Performance</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Credits Earned</h3>
+                <p class="text-3xl font-bold text-purple-600">68</p>
+                <p class="text-sm text-gray-500 mt-1">Total Credit Hours</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-sm font-satoshi font-bold text-gray-600 uppercase mb-2">Class Rank</h3>
+                <p class="text-3xl font-bold text-orange-600">15</p>
+                <p class="text-sm text-gray-500 mt-1">Out of 150 students</p>
+            </div>
+        </div>
+
+        <!-- Grade Distribution Chart -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h3 class="text-xl font-satoshi font-bold mb-4">Grade Distribution</h3>
+            <div class="grid grid-cols-5 gap-4">
+                <div class="text-center">
+                    <div class="bg-green-500 h-20 w-full rounded mb-2 flex items-end justify-center">
+                        <span class="text-white font-bold pb-2">3</span>
+                    </div>
+                    <p class="font-satoshi font-bold">A</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-blue-500 h-16 w-full rounded mb-2 flex items-end justify-center">
+                        <span class="text-white font-bold pb-2">2</span>
+                    </div>
+                    <p class="font-satoshi font-bold">B</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-yellow-500 h-8 w-full rounded mb-2 flex items-end justify-center">
+                        <span class="text-white font-bold pb-1">1</span>
+                    </div>
+                    <p class="font-satoshi font-bold">C</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-red-500 h-4 w-full rounded mb-2 flex items-end justify-center">
+                        <span class="text-white font-bold text-xs">0</span>
+                    </div>
+                    <p class="font-satoshi font-bold">D</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-500 h-4 w-full rounded mb-2 flex items-end justify-center">
+                        <span class="text-white font-bold text-xs">0</span>
+                    </div>
+                    <p class="font-satoshi font-bold">F</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Grades Table -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+            <div class="bg-gray-50 p-4 border-b">
+                <h3 class="text-xl font-satoshi font-bold">Current Semester Grades</h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Course</th>
+                            <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Instructor</th>
+                            <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Credits</th>
+                            <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Midterm</th>
+                            <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Assignments</th>
+                            <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Current Grade</th>
+                            <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div>
+                                    <div class="text-sm font-bold text-gray-900">MATH 201</div>
+                                    <div class="text-sm text-gray-500">Calculus II</div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Prof. Dr. Smith</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">87%</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">82%</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-bold rounded-full">B+</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">In Progress</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div>
+                                    <div class="text-sm font-bold text-gray-900">CS 301</div>
+                                    <div class="text-sm text-gray-500">Data Structures</div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Prof. Johnson</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">92%</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">89%</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-bold rounded-full">A-</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">In Progress</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div>
+                                    <div class="text-sm font-bold text-gray-900">PHYS 205</div>
+                                    <div class="text-sm text-gray-500">Modern Physics</div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Prof. Williams</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">78%</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">85%</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-bold rounded-full">B</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">In Progress</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div>
+                                    <div class="text-sm font-bold text-gray-900">CHEM 301</div>
+                                    <div class="text-sm text-gray-500">Organic Chemistry</div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Prof. Brown</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">74%</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">79%</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-3 py-1 bg-orange-100 text-orange-800 text-sm font-bold rounded-full">C+</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Needs Improvement</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div>
+                                    <div class="text-sm font-bold text-gray-900">ENG 201</div>
+                                    <div class="text-sm text-gray-500">Literature Analysis</div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Prof. Davis</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">95%</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">93%</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-bold rounded-full">A</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">In Progress</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div>
+                                    <div class="text-sm font-bold text-gray-900">HIST 101</div>
+                                    <div class="text-sm text-gray-500">World History</div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Prof. Wilson</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">98%</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">96%</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-bold rounded-full">A+</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Completed</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Grade Trends -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- Recent Assignments -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-satoshi font-bold mb-4">Recent Assignment Grades</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <div>
+                            <p class="font-satoshi font-bold">CS 301 - Project 3</p>
+                            <p class="text-sm text-gray-600">Data Structures Implementation</p>
+                        </div>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 font-bold rounded-full">95%</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <div>
+                            <p class="font-satoshi font-bold">MATH 201 - Quiz 4</p>
+                            <p class="text-sm text-gray-600">Integration Techniques</p>
+                        </div>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 font-bold rounded-full">88%</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <div>
+                            <p class="font-satoshi font-bold">ENG 201 - Essay 2</p>
+                            <p class="text-sm text-gray-600">Literary Analysis</p>
+                        </div>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 font-bold rounded-full">92%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Assessments -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-satoshi font-bold mb-4">Upcoming Assessments</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                        <div>
+                            <p class="font-satoshi font-bold">PHYS 205 - Final Exam</p>
+                            <p class="text-sm text-gray-600">December 15, 2024</p>
+                        </div>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 font-bold rounded-full">40%</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-orange-50 rounded">
+                        <div>
+                            <p class="font-satoshi font-bold">CHEM 301 - Lab Report</p>
+                            <p class="text-sm text-gray-600">December 10, 2024</p>
+                        </div>
+                        <span class="px-3 py-1 bg-orange-100 text-orange-800 font-bold rounded-full">15%</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-green-50 rounded">
+                        <div>
+                            <p class="font-satoshi font-bold">CS 301 - Final Project</p>
+                            <p class="text-sm text-gray-600">December 18, 2024</p>
+                        </div>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 font-bold rounded-full">25%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-satoshi font-bold mb-4">Grade Actions</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <button class="btn bg-green-600 hover:bg-green-700">Download Transcript</button>
+                <button class="btn bg-blue-600 hover:bg-blue-700">Request Grade Review</button>
+                <button class="btn bg-purple-600 hover:bg-purple-700">View Previous Semesters</button>
+                <button class="btn bg-orange-600 hover:bg-orange-700">Grade Calculator</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>Assignments - Parent Portal</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-orange-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">Assignments</h1>
+                <span class="text-orange-200">|</span>
+                <span class="text-orange-200">Parent Portal</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="parent-dashboard.html" class="btn bg-orange-700 hover:bg-orange-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-orange-700 hover:bg-orange-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">Assignment Tracker</h2>
+            <p class="text-gray-600">Monitor homework, projects, and upcoming deadlines</p>
+        </div>
+
+        <!-- Child Selection -->
+        <div class="mb-8">
+            <div class="flex space-x-4">
+                <button onclick="showChild('michael')" id="michael-btn" class="btn bg-blue-600 hover:bg-blue-700">Michael Johnson</button>
+                <button onclick="showChild('emily')" id="emily-btn" class="btn bg-pink-300 hover:bg-pink-400 text-gray-700">Emily Johnson</button>
+            </div>
+        </div>
+
+        <!-- Michael's Assignments -->
+        <div id="michael-assignments" class="child-assignments">
+            <!-- Assignment Summary -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-2xl font-bold text-blue-600">MJ</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-satoshi font-bold">Michael Johnson</h3>
+                        <p class="text-gray-600">Grade 10 • Current Week Overview</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-orange-600 mb-2">2</div>
+                        <div class="text-gray-600">Due This Week</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2">5</div>
+                        <div class="text-gray-600">Completed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">3</div>
+                        <div class="text-gray-600">In Progress</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-600 mb-2">92%</div>
+                        <div class="text-gray-600">Completion Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Due This Week -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h4 class="text-xl font-satoshi font-bold mb-6 text-orange-600">⚠️ Due This Week</h4>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h5 class="font-bold text-red-700">Chemistry Lab Report</h5>
+                                <p class="text-gray-600">Dr. Wilson • Chemistry</p>
+                            </div>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full font-bold text-sm">Due Tomorrow</span>
+                        </div>
+                        <p class="text-gray-700 mb-2">Complete analysis of chemical reactions observed in today's lab experiment.</p>
+                        <div class="text-sm text-gray-600">
+                            <span>📅 Due: December 21, 2024</span>
+                            <span class="ml-4">📊 Weight: 15% of grade</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h5 class="font-bold text-yellow-700">History Essay Draft</h5>
+                                <p class="text-gray-600">Ms. Davis • World History</p>
+                            </div>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full font-bold text-sm">Due Friday</span>
+                        </div>
+                        <p class="text-gray-700 mb-2">First draft of essay on causes of World War I. Minimum 1000 words.</p>
+                        <div class="text-sm text-gray-600">
+                            <span>📅 Due: December 22, 2024</span>
+                            <span class="ml-4">📊 Weight: 20% of grade</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Assignments -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h4 class="text-xl font-satoshi font-bold">All Assignments</h4>
+                    <div class="flex space-x-2">
+                        <button onclick="filterAssignments('michael', 'all')" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700 text-sm">All</button>
+                        <button onclick="filterAssignments('michael', 'pending')" class="btn bg-yellow-500 hover:bg-yellow-600 text-sm">Pending</button>
+                        <button onclick="filterAssignments('michael', 'completed')" class="btn bg-green-500 hover:bg-green-600 text-sm">Completed</button>
+                    </div>
+                </div>
+                
+                <div id="michael-all-assignments" class="space-y-4">
+                    <!-- Math Assignment -->
+                    <div class="assignment-item flex justify-between items-center p-4 border rounded-lg" data-status="pending">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div>
+                                    <h5 class="font-bold">Quadratic Equations Worksheet</h5>
+                                    <p class="text-gray-600 text-sm">Ms. Rodriguez • Advanced Mathematics</p>
+                                    <p class="text-gray-600 text-sm">📅 Due: December 25, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full font-bold text-sm">In Progress</span>
+                            <div class="text-sm text-gray-500 mt-1">Weight: 10%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Biology Assignment -->
+                    <div class="assignment-item flex justify-between items-center p-4 border rounded-lg" data-status="pending">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div>
+                                    <h5 class="font-bold">Chemistry Lab Report</h5>
+                                    <p class="text-gray-600 text-sm">Dr. Wilson • Chemistry</p>
+                                    <p class="text-gray-600 text-sm">📅 Due: December 21, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full font-bold text-sm">Not Started</span>
+                            <div class="text-sm text-gray-500 mt-1">Weight: 15%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- History Assignment -->
+                    <div class="assignment-item flex justify-between items-center p-4 border rounded-lg" data-status="pending">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div>
+                                    <h5 class="font-bold">History Essay Draft</h5>
+                                    <p class="text-gray-600 text-sm">Ms. Davis • World History</p>
+                                    <p class="text-gray-600 text-sm">📅 Due: December 22, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full font-bold text-sm">In Progress</span>
+                            <div class="text-sm text-gray-500 mt-1">Weight: 20%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Completed Assignments -->
+                    <div class="assignment-item flex justify-between items-center p-4 border rounded-lg" data-status="completed">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <div>
+                                    <h5 class="font-bold">Math Quiz #5</h5>
+                                    <p class="text-gray-600 text-sm">Ms. Rodriguez • Advanced Mathematics</p>
+                                    <p class="text-gray-600 text-sm">📅 Submitted: December 18, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-bold text-sm">94%</span>
+                            <div class="text-sm text-gray-500 mt-1">Weight: 10%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="assignment-item flex justify-between items-center p-4 border rounded-lg" data-status="completed">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <div>
+                                    <h5 class="font-bold">Macbeth Essay</h5>
+                                    <p class="text-gray-600 text-sm">Mr. Thompson • English Literature</p>
+                                    <p class="text-gray-600 text-sm">📅 Submitted: December 17, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-bold text-sm">96%</span>
+                            <div class="text-sm text-gray-500 mt-1">Weight: 25%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emily's Assignments -->
+        <div id="emily-assignments" class="child-assignments hidden">
+            <!-- Assignment Summary -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-2xl font-bold text-pink-600">EJ</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-satoshi font-bold">Emily Johnson</h3>
+                        <p class="text-gray-600">Grade 8 • Current Week Overview</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2">0</div>
+                        <div class="text-gray-600">Due This Week</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2">8</div>
+                        <div class="text-gray-600">Completed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">2</div>
+                        <div class="text-gray-600">In Progress</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-600 mb-2">98%</div>
+                        <div class="text-gray-600">Completion Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Assignments -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h4 class="text-xl font-satoshi font-bold mb-6 text-blue-600">📅 Upcoming Assignments</h4>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h5 class="font-bold text-blue-700">Science Fair Project</h5>
+                                <p class="text-gray-600">Ms. Lee • Earth Science</p>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full font-bold text-sm">Due Next Week</span>
+                        </div>
+                        <p class="text-gray-700 mb-2">Research project on renewable energy sources with presentation.</p>
+                        <div class="text-sm text-gray-600">
+                            <span>📅 Due: December 28, 2024</span>
+                            <span class="ml-4">📊 Weight: 30% of grade</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h5 class="font-bold text-green-700">Math Practice Problems</h5>
+                                <p class="text-gray-600">Mr. Garcia • Algebra I</p>
+                            </div>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-bold text-sm">Due Monday</span>
+                        </div>
+                        <p class="text-gray-700 mb-2">Practice set covering linear equations and graphing.</p>
+                        <div class="text-sm text-gray-600">
+                            <span>📅 Due: December 25, 2024</span>
+                            <span class="ml-4">📊 Weight: 10% of grade</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Assignments -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h4 class="text-xl font-satoshi font-bold">All Assignments</h4>
+                    <div class="flex space-x-2">
+                        <button onclick="filterAssignments('emily', 'all')" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700 text-sm">All</button>
+                        <button onclick="filterAssignments('emily', 'pending')" class="btn bg-yellow-500 hover:bg-yellow-600 text-sm">Pending</button>
+                        <button onclick="filterAssignments('emily', 'completed')" class="btn bg-green-500 hover:bg-green-600 text-sm">Completed</button>
+                    </div>
+                </div>
+                
+                <div id="emily-all-assignments" class="space-y-4">
+                    <!-- Pending Assignments -->
+                    <div class="assignment-item flex justify-between items-center p-4 border rounded-lg" data-status="pending">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                <div>
+                                    <h5 class="font-bold">Science Fair Project</h5>
+                                    <p class="text-gray-600 text-sm">Ms. Lee • Earth Science</p>
+                                    <p class="text-gray-600 text-sm">📅 Due: December 28, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full font-bold text-sm">In Progress</span>
+                            <div class="text-sm text-gray-500 mt-1">Weight: 30%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="assignment-item flex justify-between items-center p-4 border rounded-lg" data-status="pending">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <div>
+                                    <h5 class="font-bold">Math Practice Problems</h5>
+                                    <p class="text-gray-600 text-sm">Mr. Garcia • Algebra I</p>
+                                    <p class="text-gray-600 text-sm">📅 Due: December 25, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-bold text-sm">Almost Done</span>
+                            <div class="text-sm text-gray-500 mt-1">Weight: 10%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Completed Assignments -->
+                    <div class="assignment-item flex justify-between items-center p-4 border rounded-lg" data-status="completed">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <div>
+                                    <h5 class="font-bold">Poetry Analysis</h5>
+                                    <p class="text-gray-600 text-sm">Mrs. Brown • English 8</p>
+                                    <p class="text-gray-600 text-sm">📅 Submitted: December 19, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-bold text-sm">98%</span>
+                            <div class="text-sm text-gray-500 mt-1">Weight: 20%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="assignment-item flex justify-between items-center p-4 border rounded-lg" data-status="completed">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <div>
+                                    <h5 class="font-bold">Rock Cycle Project</h5>
+                                    <p class="text-gray-600 text-sm">Ms. Lee • Earth Science</p>
+                                    <p class="text-gray-600 text-sm">📅 Submitted: December 18, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-bold text-sm">95%</span>
+                            <div class="text-sm text-gray-500 mt-1">Weight: 25%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="assignment-item flex justify-between items-center p-4 border rounded-lg" data-status="completed">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <div>
+                                    <h5 class="font-bold">Art Portfolio Page 3</h5>
+                                    <p class="text-gray-600 text-sm">Ms. Taylor • Art</p>
+                                    <p class="text-gray-600 text-sm">📅 Submitted: December 17, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-bold text-sm">100%</span>
+                            <div class="text-sm text-gray-500 mt-1">Weight: 15%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showChild(child) {
+            // Hide all assignment sections
+            document.getElementById('michael-assignments').classList.add('hidden');
+            document.getElementById('emily-assignments').classList.add('hidden');
+            
+            // Reset button styles
+            document.getElementById('michael-btn').className = 'btn bg-blue-300 hover:bg-blue-400 text-gray-700';
+            document.getElementById('emily-btn').className = 'btn bg-pink-300 hover:bg-pink-400 text-gray-700';
+            
+            // Show selected child and highlight button
+            if (child === 'michael') {
+                document.getElementById('michael-assignments').classList.remove('hidden');
+                document.getElementById('michael-btn').className = 'btn bg-blue-600 hover:bg-blue-700';
+            } else if (child === 'emily') {
+                document.getElementById('emily-assignments').classList.remove('hidden');
+                document.getElementById('emily-btn').className = 'btn bg-pink-600 hover:bg-pink-700';
+            }
+        }
+
+        function filterAssignments(child, filter) {
+            const containerId = child + '-all-assignments';
+            const assignments = document.querySelectorAll('#' + containerId + ' .assignment-item');
+            
+            assignments.forEach(assignment => {
+                const status = assignment.getAttribute('data-status');
+                
+                if (filter === 'all') {
+                    assignment.style.display = 'flex';
+                } else if (filter === 'pending' && status === 'pending') {
+                    assignment.style.display = 'flex';
+                } else if (filter === 'completed' && status === 'completed') {
+                    assignment.style.display = 'flex';
+                } else {
+                    assignment.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize with Michael's assignments
+        window.onload = function() {
+            showChild('michael');
+        };
+    </script>
+</body>
+</html>

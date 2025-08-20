@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>Academic Calendar - Admin Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-purple-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">Academic Calendar</h1>
+                <span class="text-purple-200">|</span>
+                <span class="text-purple-200">Admin Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="admin-dashboard.html" class="btn bg-purple-700 hover:bg-purple-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-purple-700 hover:bg-purple-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">Academic Calendar Management</h2>
+            <p class="text-gray-600">Plan and manage academic years, semesters, and important dates</p>
+        </div>
+
+        <!-- Current Academic Year Info -->
+        <div class="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg p-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-2xl font-bold mb-1">2024-2025</div>
+                    <div class="text-purple-200">Current Academic Year</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold mb-1">Fall 2024</div>
+                    <div class="text-purple-200">Current Semester</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold mb-1">Week 8</div>
+                    <div class="text-purple-200">Current Week</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold mb-1">42 days</div>
+                    <div class="text-purple-200">Until Finals</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Management Tabs -->
+        <div class="bg-white rounded-lg shadow-lg">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8 px-6" aria-label="Tabs">
+                    <button onclick="showTab('overview')" id="overview-tab" class="py-4 px-1 border-b-2 border-purple-500 font-medium text-sm text-purple-600">
+                        Calendar Overview
+                    </button>
+                    <button onclick="showTab('semesters')" id="semesters-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Semester Management
+                    </button>
+                    <button onclick="showTab('events')" id="events-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Academic Events
+                    </button>
+                    <button onclick="showTab('holidays')" id="holidays-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Holidays & Breaks
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Calendar Overview Tab -->
+            <div id="overview-content" class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold text-gray-800">Academic Year 2024-2025</h3>
+                    <div class="flex space-x-3">
+                        <button onclick="exportCalendar()" class="btn bg-blue-600 hover:bg-blue-700">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Export Calendar
+                        </button>
+                        <button onclick="addEvent()" class="btn bg-green-600 hover:bg-green-700">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            Add Event
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mini Calendar -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2">
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="text-lg font-satoshi font-bold">November 2024</h4>
+                                <div class="flex space-x-2">
+                                    <button class="p-2 hover:bg-gray-200 rounded">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="p-2 hover:bg-gray-200 rounded">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Calendar Grid -->
+                            <div class="grid grid-cols-7 gap-2 mb-2">
+                                <div class="text-center text-sm font-bold text-gray-600 py-2">Sun</div>
+                                <div class="text-center text-sm font-bold text-gray-600 py-2">Mon</div>
+                                <div class="text-center text-sm font-bold text-gray-600 py-2">Tue</div>
+                                <div class="text-center text-sm font-bold text-gray-600 py-2">Wed</div>
+                                <div class="text-center text-sm font-bold text-gray-600 py-2">Thu</div>
+                                <div class="text-center text-sm font-bold text-gray-600 py-2">Fri</div>
+                                <div class="text-center text-sm font-bold text-gray-600 py-2">Sat</div>
+                            </div>
+                            
+                            <div class="grid grid-cols-7 gap-2">
+                                <!-- Calendar days -->
+                                <div class="text-center p-2 text-gray-400">27</div>
+                                <div class="text-center p-2 text-gray-400">28</div>
+                                <div class="text-center p-2 text-gray-400">29</div>
+                                <div class="text-center p-2 text-gray-400">30</div>
+                                <div class="text-center p-2 text-gray-400">31</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">1</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">2</div>
+                                
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">3</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">4</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">5</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">6</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">7</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">8</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">9</div>
+                                
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">10</div>
+                                <div class="text-center p-2 bg-yellow-100 text-yellow-800 rounded font-bold">11</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">12</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">13</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">14</div>
+                                <div class="text-center p-2 bg-blue-100 text-blue-800 rounded font-bold">15</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">16</div>
+                                
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">17</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">18</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">19</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">20</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">21</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">22</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">23</div>
+                                
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">24</div>
+                                <div class="text-center p-2 bg-red-100 text-red-800 rounded font-bold">25</div>
+                                <div class="text-center p-2 bg-red-100 text-red-800 rounded font-bold">26</div>
+                                <div class="text-center p-2 bg-red-100 text-red-800 rounded font-bold">27</div>
+                                <div class="text-center p-2 bg-red-100 text-red-800 rounded font-bold">28</div>
+                                <div class="text-center p-2 bg-red-100 text-red-800 rounded font-bold">29</div>
+                                <div class="text-center p-2 hover:bg-blue-100 rounded">30</div>
+                            </div>
+                            
+                            <!-- Legend -->
+                            <div class="mt-4 flex space-x-4 text-sm">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-blue-100 rounded mr-2"></div>
+                                    <span>Academic Events</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-yellow-100 rounded mr-2"></div>
+                                    <span>Deadlines</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-red-100 rounded mr-2"></div>
+                                    <span>Holidays</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Upcoming Events -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Upcoming Events</h4>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4 rounded-r">
+                                <div class="font-bold text-yellow-800">Nov 11</div>
+                                <div class="text-yellow-700">Course Registration Deadline</div>
+                                <div class="text-sm text-yellow-600">Spring 2025 semester</div>
+                            </div>
+                            
+                            <div class="border-l-4 border-blue-400 bg-blue-50 p-4 rounded-r">
+                                <div class="font-bold text-blue-800">Nov 15</div>
+                                <div class="text-blue-700">Midterm Exams Begin</div>
+                                <div class="text-sm text-blue-600">Fall 2024 semester</div>
+                            </div>
+                            
+                            <div class="border-l-4 border-red-400 bg-red-50 p-4 rounded-r">
+                                <div class="font-bold text-red-800">Nov 25-29</div>
+                                <div class="text-red-700">Thanksgiving Break</div>
+                                <div class="text-sm text-red-600">No classes</div>
+                            </div>
+                            
+                            <div class="border-l-4 border-green-400 bg-green-50 p-4 rounded-r">
+                                <div class="font-bold text-green-800">Dec 2</div>
+                                <div class="text-green-700">Study Week Begins</div>
+                                <div class="text-sm text-green-600">Preparation for finals</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Semester Management Tab -->
+            <div id="semesters-content" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold text-gray-800">Semester Management</h3>
+                    <button onclick="openAddSemesterModal()" class="btn bg-green-600 hover:bg-green-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Add Semester
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Current Semester -->
+                    <div class="bg-green-50 border-2 border-green-200 rounded-lg p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-satoshi font-bold text-green-800">Fall 2024</h4>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Current</span>
+                            </div>
+                            <div class="text-right text-sm text-green-600">
+                                <div>Week 8 of 16</div>
+                                <div class="w-20 bg-green-200 rounded-full h-2 mt-1">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 50%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-green-700">Start Date:</span>
+                                <span class="font-bold">Aug 26, 2024</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-green-700">End Date:</span>
+                                <span class="font-bold">Dec 18, 2024</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-green-700">Courses:</span>
+                                <span class="font-bold">156</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-green-700">Students:</span>
+                                <span class="font-bold">1,247</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 flex space-x-2">
+                            <button class="btn bg-green-600 hover:bg-green-700 text-sm">Manage</button>
+                            <button class="btn bg-green-500 hover:bg-green-600 text-sm">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Next Semester -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-satoshi font-bold text-blue-800">Spring 2025</h4>
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Upcoming</span>
+                            </div>
+                            <div class="text-right text-sm text-blue-600">
+                                <div>Registration Open</div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-blue-700">Start Date:</span>
+                                <span class="font-bold">Jan 15, 2025</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-blue-700">End Date:</span>
+                                <span class="font-bold">May 8, 2025</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-blue-700">Courses:</span>
+                                <span class="font-bold">142</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-blue-700">Registered:</span>
+                                <span class="font-bold">894</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 flex space-x-2">
+                            <button class="btn bg-blue-600 hover:bg-blue-700 text-sm">Manage</button>
+                            <button class="btn bg-blue-500 hover:bg-blue-600 text-sm">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Future Semester -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-satoshi font-bold text-gray-800">Summer 2025</h4>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Planning</span>
+                            </div>
+                            <div class="text-right text-sm text-gray-600">
+                                <div>In Planning</div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Start Date:</span>
+                                <span class="font-bold">Jun 2, 2025</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">End Date:</span>
+                                <span class="font-bold">Aug 15, 2025</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Courses:</span>
+                                <span class="font-bold">48</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Capacity:</span>
+                                <span class="font-bold">600</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 flex space-x-2">
+                            <button class="btn bg-gray-600 hover:bg-gray-700 text-sm">Plan</button>
+                            <button class="btn bg-gray-500 hover:bg-gray-600 text-sm">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Events Tab -->
+            <div id="events-content" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold text-gray-800">Academic Events</h3>
+                    <button onclick="openAddEventModal()" class="btn bg-green-600 hover:bg-green-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Add Event
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="text-left py-3">Event</th>
+                                <th class="text-left py-3">Date</th>
+                                <th class="text-left py-3">Type</th>
+                                <th class="text-left py-3">Semester</th>
+                                <th class="text-left py-3">Status</th>
+                                <th class="text-left py-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-3">
+                                    <div>
+                                        <div class="font-bold">Course Registration Deadline</div>
+                                        <div class="text-sm text-gray-600">Spring 2025 registration closes</div>
+                                    </div>
+                                </td>
+                                <td class="py-3">Nov 11, 2024</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Deadline</span>
+                                </td>
+                                <td class="py-3">Spring 2025</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                                </td>
+                                <td class="py-3">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                        <button class="text-red-600 hover:text-red-800">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3">
+                                    <div>
+                                        <div class="font-bold">Midterm Exams</div>
+                                        <div class="text-sm text-gray-600">Fall 2024 midterm examination period</div>
+                                    </div>
+                                </td>
+                                <td class="py-3">Nov 15-22, 2024</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Exam Period</span>
+                                </td>
+                                <td class="py-3">Fall 2024</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                                </td>
+                                <td class="py-3">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                        <button class="text-red-600 hover:text-red-800">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3">
+                                    <div>
+                                        <div class="font-bold">Final Exams</div>
+                                        <div class="text-sm text-gray-600">Fall 2024 final examination period</div>
+                                    </div>
+                                </td>
+                                <td class="py-3">Dec 9-18, 2024</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Exam Period</span>
+                                </td>
+                                <td class="py-3">Fall 2024</td>
+                                <td class="py-3">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Scheduled</span>
+                                </td>
+                                <td class="py-3">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                        <button class="text-red-600 hover:text-red-800">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Holidays & Breaks Tab -->
+            <div id="holidays-content" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold text-gray-800">Holidays & Academic Breaks</h3>
+                    <button onclick="openAddHolidayModal()" class="btn bg-green-600 hover:bg-green-700">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Add Holiday
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Fall 2024 -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Fall 2024</h4>
+                        <div class="space-y-4">
+                            <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="font-bold text-red-800">Labor Day</div>
+                                        <div class="text-red-700">September 2, 2024</div>
+                                        <div class="text-sm text-red-600">Federal Holiday</div>
+                                    </div>
+                                    <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Past</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="font-bold text-orange-800">Fall Break</div>
+                                        <div class="text-orange-700">October 14-15, 2024</div>
+                                        <div class="text-sm text-orange-600">Academic Break</div>
+                                    </div>
+                                    <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">Past</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="font-bold text-yellow-800">Thanksgiving Break</div>
+                                        <div class="text-yellow-700">November 25-29, 2024</div>
+                                        <div class="text-sm text-yellow-600">Academic Break</div>
+                                    </div>
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Upcoming</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spring 2025 -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Spring 2025</h4>
+                        <div class="space-y-4">
+                            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="font-bold text-blue-800">Martin Luther King Jr. Day</div>
+                                        <div class="text-blue-700">January 20, 2025</div>
+                                        <div class="text-sm text-blue-600">Federal Holiday</div>
+                                    </div>
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Scheduled</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-r">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="font-bold text-green-800">Spring Break</div>
+                                        <div class="text-green-700">March 10-14, 2025</div>
+                                        <div class="text-sm text-green-600">Academic Break</div>
+                                    </div>
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Scheduled</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="font-bold text-purple-800">Memorial Day</div>
+                                        <div class="text-purple-700">May 26, 2025</div>
+                                        <div class="text-sm text-purple-600">Federal Holiday</div>
+                                    </div>
+                                    <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Scheduled</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Event Modal (Hidden by default) -->
+    <div id="addEventModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center h-full p-4">
+            <div class="bg-white rounded-lg p-6 w-full max-w-lg">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-satoshi font-bold">Add Academic Event</h3>
+                    <button onclick="closeAddEventModal()" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-satoshi font-bold mb-2">Event Name</label>
+                        <input type="text" class="input" placeholder="e.g., Course Registration Deadline" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-satoshi font-bold mb-2">Description</label>
+                        <textarea class="input" rows="3" placeholder="Enter event description"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Start Date</label>
+                            <input type="date" class="input" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">End Date</label>
+                            <input type="date" class="input">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Event Type</label>
+                            <select class="input" required>
+                                <option value="">Select Type</option>
+                                <option value="deadline">Deadline</option>
+                                <option value="exam">Exam Period</option>
+                                <option value="holiday">Holiday</option>
+                                <option value="break">Academic Break</option>
+                                <option value="orientation">Orientation</option>
+                                <option value="graduation">Graduation</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Semester</label>
+                            <select class="input" required>
+                                <option value="">Select Semester</option>
+                                <option value="fall2024">Fall 2024</option>
+                                <option value="spring2025">Spring 2025</option>
+                                <option value="summer2025">Summer 2025</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4 pt-4">
+                        <button type="submit" class="btn bg-green-600 hover:bg-green-700">Add Event</button>
+                        <button type="button" onclick="closeAddEventModal()" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all content
+            document.getElementById('overview-content').classList.add('hidden');
+            document.getElementById('semesters-content').classList.add('hidden');
+            document.getElementById('events-content').classList.add('hidden');
+            document.getElementById('holidays-content').classList.add('hidden');
+            
+            // Remove active styles from all tabs
+            const tabs = ['overview-tab', 'semesters-tab', 'events-tab', 'holidays-tab'];
+            tabs.forEach(tab => {
+                const tabElement = document.getElementById(tab);
+                tabElement.classList.remove('border-purple-500', 'text-purple-600');
+                tabElement.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            // Show selected content and activate tab
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            const activeTab = document.getElementById(tabName + '-tab');
+            activeTab.classList.remove('border-transparent', 'text-gray-500');
+            activeTab.classList.add('border-purple-500', 'text-purple-600');
+        }
+
+        function exportCalendar() {
+            alert('Export calendar functionality');
+        }
+
+        function addEvent() {
+            document.getElementById('addEventModal').classList.remove('hidden');
+        }
+
+        function openAddEventModal() {
+            document.getElementById('addEventModal').classList.remove('hidden');
+        }
+
+        function closeAddEventModal() {
+            document.getElementById('addEventModal').classList.add('hidden');
+        }
+
+        function openAddSemesterModal() {
+            alert('Add Semester modal would open');
+        }
+
+        function openAddHolidayModal() {
+            alert('Add Holiday modal would open');
+        }
+    </script>
+</body>
+</html>

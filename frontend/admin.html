@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>Admin Login - Student Management System</title>
+</head>
+<body class="bg-gray-100">
+    <div class="flex justify-center items-center h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+            <div class="text-center mb-6">
+                <h1 class="text-2xl font-satoshi font-bold text-purple-600 mb-2">Admin Login</h1>
+                <p class="text-gray-600">Enter your administrative credentials</p>
+            </div>
+            
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-satoshi font-bold mb-2">Admin Username</label>
+                    <input type="text" id="email" name="email" class="input" placeholder="Enter your admin username" required>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 font-satoshi font-bold mb-2">Password</label>
+                    <input type="password" id="password" name="password" class="input" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="btn bg-purple-600 hover:bg-purple-700 w-full mb-4">Login</button>
+                
+                <div class="text-center">
+                    <a href="index.html" class="text-purple-600 hover:text-purple-800 font-satoshi">← Back to Role Selection</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation (you can replace this with actual authentication)
+            if (email && password) {
+                // Show loading state
+                const submitBtn = event.target.querySelector('button[type="submit"]');
+                submitBtn.textContent = 'Logging in...';
+                submitBtn.disabled = true;
+                
+                // Simulate login delay
+                setTimeout(() => {
+                    // Redirect to admin dashboard after successful login
+                    window.location.href = 'admin-dashboard.html';
+                }, 1000);
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+    </script>
+</body>
+</html>

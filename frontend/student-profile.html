@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>My Profile - Student Dashboard</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-green-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-satoshi font-bold">My Profile</h1>
+                <span class="text-green-200">|</span>
+                <span class="text-green-200">Student Dashboard</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="student-dashboard.html" class="btn bg-green-700 hover:bg-green-800">← Back to Dashboard</a>
+                <a href="index.html" class="btn bg-green-700 hover:bg-green-800">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-6">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-satoshi font-bold text-gray-800 mb-2">Student Profile</h2>
+            <p class="text-gray-600">Manage your personal information and account settings</p>
+        </div>
+
+        <!-- Profile Overview Card -->
+        <div class="bg-white rounded-lg shadow-lg mb-8">
+            <div class="bg-gradient-to-r from-green-500 to-blue-600 h-32 rounded-t-lg"></div>
+            <div class="relative px-6 pb-6">
+                <div class="flex flex-col md:flex-row md:items-end md:space-x-6">
+                    <!-- Profile Picture -->
+                    <div class="relative -mt-16 mb-4 md:mb-0">
+                        <div class="w-32 h-32 bg-white rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                            <img src="https://img.freepik.com/free-photo/brunette-business-woman-with-wavy-long-hair-blue-eyes-stands-holding-notebook-hands_197531-343.jpg?semt=ais_hybrid&w=740&q=80" alt="Profile Picture" class="w-28 h-28 rounded-full object-cover">
+                        </div>
+                        <button class="absolute bottom-0 right-0 bg-blue-600 text-white p-2 rounded-full shadow-lg hover:bg-blue-700">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Basic Info -->
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-satoshi font-bold text-gray-800">Sarah Johnson</h3>
+                        <p class="text-gray-600">Computer Science Major</p>
+                        <p class="text-gray-600">Student ID: ST-2024-001234</p>
+                        <div class="flex space-x-4 mt-2">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-bold rounded-full">Active Student</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-bold rounded-full">Dean's List</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 mt-4 md:mt-0">
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-green-600">3.52</p>
+                            <p class="text-sm text-gray-600">GPA</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-blue-600">68</p>
+                            <p class="text-sm text-gray-600">Credits</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-purple-600">Third</p>
+                            <p class="text-sm text-gray-600">Year</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Tabs -->
+        <div class="bg-white rounded-lg shadow-lg">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8 px-6" aria-label="Tabs">
+                    <button onclick="showTab('personal')" id="personal-tab" class="py-4 px-1 border-b-2 border-green-500 font-medium text-sm text-green-600">
+                        Personal Information
+                    </button>
+                    <button onclick="showTab('academic')" id="academic-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Academic Details
+                    </button>
+                    <button onclick="showTab('contact')" id="contact-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Contact & Emergency
+                    </button>
+                    <button onclick="showTab('settings')" id="settings-tab" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Account Settings
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Personal Information Tab -->
+            <div id="personal-content" class="p-6">
+                <h3 class="text-xl font-satoshi font-bold mb-6">Personal Information</h3>
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">First Name</label>
+                            <input type="text" value="Sarah" class="input">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Last Name</label>
+                            <input type="text" value="Johnson" class="input">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Date of Birth</label>
+                            <input type="date" value="2003-05-15" class="input">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Gender</label>
+                            <select class="input">
+                                <option>Female</option>
+                                <option>Male</option>
+                                <option>Other</option>
+                                <option>Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Nationality</label>
+                            <input type="text" value="American" class="input">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Social Security Number</label>
+                            <input type="text" value="***-**-1234" class="input" disabled>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-satoshi font-bold mb-2">Address</label>
+                        <textarea class="input" rows="3">123 University Avenue, Apartment 4B
+College Town, ST 12345
+United States</textarea>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button type="submit" class="btn bg-green-600 hover:bg-green-700">Save Changes</button>
+                        <button type="button" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Academic Details Tab -->
+            <div id="academic-content" class="p-6 hidden">
+                <h3 class="text-xl font-satoshi font-bold mb-6">Academic Information</h3>
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Student ID</label>
+                            <input type="text" value="ST-2024-001234" class="input" disabled>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Enrollment Date</label>
+                            <input type="text" value="September 2022" class="input" disabled>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Academic Year</label>
+                            <input type="text" value="Junior (3rd Year)" class="input" disabled>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Expected Graduation</label>
+                            <input type="text" value="May 2026" class="input" disabled>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Major</label>
+                            <select class="input">
+                                <option>Computer Science</option>
+                                <option>Mathematics</option>
+                                <option>Physics</option>
+                                <option>Chemistry</option>
+                                <option>Engineering</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Minor (Optional)</label>
+                            <select class="input">
+                                <option>Mathematics</option>
+                                <option>None</option>
+                                <option>Physics</option>
+                                <option>Business</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Current GPA</label>
+                            <input type="text" value="3.52" class="input" disabled>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Total Credits Earned</label>
+                            <input type="text" value="68" class="input" disabled>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Academic Advisor</h4>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p><strong>Dr. Michael Thompson</strong></p>
+                            <p>Department of Computer Science</p>
+                            <p>Email: m.thompson@university.edu</p>
+                            <p>Office: Computer Science Building, Room 301</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <button class="btn bg-green-600 hover:bg-green-700">Save Changes</button>
+                        <button class="btn bg-blue-600 hover:bg-blue-700">Request Advisor Meeting</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact & Emergency Tab -->
+            <div id="contact-content" class="p-6 hidden">
+                <h3 class="text-xl font-satoshi font-bold mb-6">Contact & Emergency Information</h3>
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Primary Email</label>
+                            <input type="email" value="sarah.johnson@university.edu" class="input" disabled>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Secondary Email</label>
+                            <input type="email" value="sarah.personal@email.com" class="input">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Phone Number</label>
+                            <input type="tel" value="+1 (555) 123-4567" class="input">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-satoshi font-bold mb-2">Mobile Number</label>
+                            <input type="tel" value="+1 (555) 987-6543" class="input">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Emergency Contact</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Contact Name</label>
+                                <input type="text" value="Mary Johnson" class="input">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Relationship</label>
+                                <select class="input">
+                                    <option>Mother</option>
+                                    <option>Father</option>
+                                    <option>Guardian</option>
+                                    <option>Spouse</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Emergency Phone</label>
+                                <input type="tel" value="+1 (555) 456-7890" class="input">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Emergency Email</label>
+                                <input type="email" value="mary.johnson@email.com" class="input">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <button type="submit" class="btn bg-green-600 hover:bg-green-700">Save Changes</button>
+                        <button type="button" class="btn bg-gray-300 hover:bg-gray-400 text-gray-700">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Account Settings Tab -->
+            <div id="settings-content" class="p-6 hidden">
+                <h3 class="text-xl font-satoshi font-bold mb-6">Account Settings</h3>
+                <div class="space-y-8">
+                    <!-- Change Password -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Change Password</h4>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Current Password</label>
+                                <input type="password" class="input">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">New Password</label>
+                                <input type="password" class="input">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-satoshi font-bold mb-2">Confirm New Password</label>
+                                <input type="password" class="input">
+                            </div>
+                            <button type="submit" class="btn bg-blue-600 hover:bg-blue-700">Update Password</button>
+                        </form>
+                    </div>
+
+                    <!-- Notification Preferences -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Notification Preferences</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="checkbox" checked class="mr-3">
+                                <span>Email notifications for new assignments</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" checked class="mr-3">
+                                <span>SMS alerts for urgent announcements</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3">
+                                <span>Weekly grade summary emails</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" checked class="mr-3">
+                                <span>Library due date reminders</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Settings -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Privacy Settings</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="checkbox" checked class="mr-3">
+                                <span>Allow other students to see my academic achievements</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3">
+                                <span>Include my profile in student directory</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" checked class="mr-3">
+                                <span>Allow professors to send direct messages</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Account Actions -->
+                    <div>
+                        <h4 class="text-lg font-satoshi font-bold mb-4">Account Actions</h4>
+                        <div class="space-y-3">
+                            <button class="btn bg-green-600 hover:bg-green-700">Save All Settings</button>
+                            <button class="btn bg-blue-600 hover:bg-blue-700">Download Account Data</button>
+                            <button class="btn bg-orange-600 hover:bg-orange-700">Request Account Verification</button>
+                            <button class="btn bg-red-600 hover:bg-red-700">Deactivate Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all content
+            document.getElementById('personal-content').classList.add('hidden');
+            document.getElementById('academic-content').classList.add('hidden');
+            document.getElementById('contact-content').classList.add('hidden');
+            document.getElementById('settings-content').classList.add('hidden');
+            
+            // Remove active styles from all tabs
+            const tabs = ['personal-tab', 'academic-tab', 'contact-tab', 'settings-tab'];
+            tabs.forEach(tab => {
+                const tabElement = document.getElementById(tab);
+                tabElement.classList.remove('border-green-500', 'border-blue-500', 'border-purple-500', 'border-orange-500', 'text-green-600', 'text-blue-600', 'text-purple-600', 'text-orange-600');
+                tabElement.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            // Show selected content and activate tab
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            const activeTab = document.getElementById(tabName + '-tab');
+            activeTab.classList.remove('border-transparent', 'text-gray-500');
+            
+            if (tabName === 'personal') {
+                activeTab.classList.add('border-green-500', 'text-green-600');
+            } else if (tabName === 'academic') {
+                activeTab.classList.add('border-blue-500', 'text-blue-600');
+            } else if (tabName === 'contact') {
+                activeTab.classList.add('border-purple-500', 'text-purple-600');
+            } else if (tabName === 'settings') {
+                activeTab.classList.add('border-orange-500', 'text-orange-600');
+            }
+        }
+    </script>
+</body>
+</html>

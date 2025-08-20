@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&f[]=satoshi@400,700&f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <link href="styles/output.css" rel="stylesheet">
+    <title>Student Management System</title>
+</head>
+<body>
+    <div class="flex justify-center items-center h-screen bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+            <h1 class="mb-6 text-2xl font-satoshi font-bold text-center">Choose Your Role</h1>
+            <img id="roleImage" src="https://cdn.pixabay.com/photo/2024/08/30/10/15/woman-9009013_1280.png" alt="Student" class="w-full h-auto rounded-lg mb-6 transition-all duration-300">
+            
+            <div class="grid grid-cols-2 gap-3">
+                <button onmouseenter="selectRole('teacher')" onmouseleave="resetToDefault()" onclick="redirectTo('teacher')" class="btn bg-blue-400 hover:bg-blue-700 text-white font-satoshi transition-colors">Teacher</button>
+                <button onmouseenter="selectRole('student')" onmouseleave="resetToDefault()" onclick="redirectTo('student')" class="btn bg-green-600 hover:bg-green-700 text-white font-satoshi transition-colors active-role">Student</button>
+                <button onmouseenter="selectRole('admin')" onmouseleave="resetToDefault()" onclick="redirectTo('admin')" class="btn bg-purple-600 hover:bg-purple-700 text-white font-satoshi transition-colors">Admin</button>
+                <button onmouseenter="selectRole('parent')" onmouseleave="resetToDefault()" onclick="redirectTo('parent')" class="btn bg-orange-600 hover:bg-orange-700 text-white font-satoshi transition-colors">Parent</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Define images for each role
+        const roleImages = {
+            teacher: {
+                src: "https://img.freepik.com/premium-vector/education-material-icon-vector-illustration_1287271-8064.jpg",
+                alt: "Teacher"
+            },
+            student: {
+                src: "https://cdn.pixabay.com/photo/2024/08/30/10/15/woman-9009013_1280.png",
+                alt: "Student"
+            },
+            admin: {
+                src: "https://img.freepik.com/premium-vector/admin-concept-illustration_114360-2248.jpg",
+                alt: "Admin"
+            },
+            parent: {
+                src: "https://img.freepik.com/premium-vector/parents-concept-illustration_114360-4137.jpg",
+                alt: "Parent"
+            }
+        };
+
+        let currentRole = 'student'; // Default role
+        let defaultRole = 'student'; // Always return to student
+
+        function selectRole(role) {
+            // Get image element
+            const imageElement = document.getElementById('roleImage');
+            
+            // Update image with fade effect
+            imageElement.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                imageElement.src = roleImages[role].src;
+                imageElement.alt = roleImages[role].alt;
+                imageElement.style.opacity = '1';
+            }, 100);
+            
+            // Update button states for hover
+            updateButtonStates(role);
+        }
+
+        function resetToDefault() {
+            // Return to default role (student) when not hovering
+            selectRole(defaultRole);
+        }
+
+        function redirectTo(role) {
+            // Define the login pages for each role
+            const roleLoginPages = {
+                teacher: 'teacher.html',
+                student: 'student.html', 
+                admin: 'admin.html',
+                parent: 'parent.html'
+            };
+            
+            // Redirect to the appropriate login page
+            if (roleLoginPages[role]) {
+                // Add a small delay for visual feedback
+                setTimeout(() => {
+                    window.location.href = roleLoginPages[role];
+                }, 200);
+            } else {
+                alert(`${role.charAt(0).toUpperCase() + role.slice(1)} login page not found!`);
+            }
+        }
+
+        function updateButtonStates(activeRole) {
+            // Remove active/hover class from all buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.classList.remove('active-role', 'hover-active');
+                // Reset ring effects
+                button.classList.remove('ring-4', 'ring-blue-300', 'ring-green-300', 'ring-purple-300', 'ring-orange-300', 'ring-opacity-50');
+            });
+            
+            // Add active state to hovered/selected button
+            const activeButton = document.querySelector(`button[onmouseenter="selectRole('${activeRole}')"]`);
+            if (activeButton) {
+                if (activeRole === defaultRole) {
+                    activeButton.classList.add('active-role'); // Permanent state for default
+                } else {
+                    activeButton.classList.add('hover-active'); // Temporary hover state
+                }
+                
+                // Add ring effect for active state
+                if (activeRole === 'teacher') {
+                    activeButton.classList.add('ring-4', 'ring-blue-300', 'ring-opacity-50');
+                } else if (activeRole === 'student') {
+                    activeButton.classList.add('ring-4', 'ring-green-300', 'ring-opacity-50');
+                } else if (activeRole === 'admin') {
+                    activeButton.classList.add('ring-4', 'ring-purple-300', 'ring-opacity-50');
+                } else if (activeRole === 'parent') {
+                    activeButton.classList.add('ring-4', 'ring-orange-300', 'ring-opacity-50');
+                }
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateButtonStates('student'); // Student is default
+        });
+    </script>
+</body>
+</html>
